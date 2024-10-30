@@ -1,0 +1,312 @@
+{
+    "navbar": [
+        { "id": 1, "link": "/", "label": "Home" },
+        { "id": 2, "link": "/article", "label": "Article" },
+        { "id": 3, "link": "/course", "label": "Course" },
+        { "id": 4, "link": "/work", "label": "Our Work" },
+        { "id": 5, "link": "/about", "label": "About Us" }
+    ],
+    "footer": {
+        "more": {
+            "title": "More",
+            "more-list": [
+                { "id": 1, "link": "/about", "label": "About Us" },
+                { "id": 2, "link": "/contact", "label": "Contact" },
+                { "id": 3, "link": "/term-and-condition", "label": "Terms And Conditions" },
+                { "id": 4, "link": "/privacy", "label": "Privacy" }
+            ]
+        },
+        "social": "Social"
+    },
+    "web-title": {
+        "home": "Home",
+        "about": "About Us",
+        "article": "Article",
+        "course": "Course",
+        "work": "Our Work",
+        "contact": "Contact",
+        "term-and-condition": "Terms And Conditions",
+        "privacy": "Privacy",
+        "signin": "Sign in",
+        "signup": "Sign up"
+    },
+    "pages": {
+        "home": {
+            "home-label": ["Welcome to Codehub", "Why don't you start today?"],
+            "home-service": {
+                "label": "Our Services",
+                "description": "Welcome to Codehub, your trusted partner in transforming ideas into reality with cutting-edge mobile and web development solutions. We specialize in creating user-friendly, scalable, and responsive digital platforms that drive business growth. From intuitive mobile apps to dynamic websites, our team of experienced developers delivers custom solutions tailored to your unique needs. Whether you're a startup or an established enterprise, we provide end-to-end services, including UI/UX design, backend development, e-commerce integration, and ongoing maintenance.",
+                "services": [
+                    { 
+                        "id": 1, 
+                        "icon": "/src/assets/services/mobileapp-service.png", 
+                        "label": "Mobile App Service",
+                        "description": "Transform your ideas into reality with our expert mobile app development. We create intuitive, engaging applications with high performance and scalability."
+                    },
+                    { 
+                        "id": 2, 
+                        "icon": "/src/assets/services/web-service.png", 
+                        "label": "Web App Service",
+                        "description": "Deliver seamless digital experiences with our robust web solutions. From design to deployment, we ensure high performance and scalability."
+                    },
+                    { 
+                        "id": 3, 
+                        "icon": "/src/assets/services/uxui-service.png", 
+                        "label": "UX/UI Design Service",
+                        "description": "We design user-friendly, visually appealing interfaces that enhance user experiences. From concept to prototype, our focus is on seamless navigation and engaging design, tailored to meet your business goals."
+                    },
+                    { 
+                        "id": 4, 
+                        "icon": "/src/assets/services/training-service.png", 
+                        "label": "IT Traning Service",
+                        "description": "Our IT training offers hands-on courses in programming, web development, mobile app development, and more. Led by experts, we provide skills to help individuals and teams in the tech industry."
+                    }
+                ]
+            },
+            "home-vision": {
+                "label": "Our Visions",
+                "visions": [
+                    { 
+                        "id": 1, 
+                        "icon": "/src/assets/visions/EXCEPTIONAL SOFTWARE.png", 
+                        "label": "EXCEPTIONAL SOFTWARE",
+                        "description": "Our mission is to craft software that is both intuitive and efficient. We prioritize simplicity and user engagement, ensuring our solutions are lean, clean, and easily adaptable. By adhering to the principles of the Unix Philosophy, we design each component to excel in its specific function."
+                    },
+                    { 
+                        "id": 2, 
+                        "icon": "/src/assets/visions/INNOVATIVE METHODOLOGY.png", 
+                        "label": "INNOVATIVE METHODOLOGY",
+                        "description": "We integrate software functionality into a well-designed user workflow from the project's inception. By employing short release cycles, we continuously validate and refine this workflow through user feedback. This approach allows us to adapt to evolving needs, ensuring flexibility and responsiveness in our project management."
+                    },
+                    { 
+                        "id": 3, 
+                        "icon": "/src/assets/visions/ADVANCED TECHNOLOGY AND TOOLS.png", 
+                        "label": "ADVANCED TECHNOLOGY AND TOOLS",
+                        "description": "We stay at the forefront of technology, mastering current systems while exploring emerging trends. Our developers are committed to learning new languages and frameworks, ensuring we are prepared for future technological shifts. We utilize cutting-edge project management tools but remain adaptable to client preferences."
+                    },
+                    {
+                        "id": 4, 
+                        "icon": "/src/assets/visions/LONG-TERM PARTNERSHIPS.png", 
+                        "label": "LONG-TERM PARTNERSHIPS",
+                        "description": "We aim to build enduring relationships with our clients, founded on trust, responsiveness, and excellence. Our goal is to deliver software that is truly yours, complete with source code and documentation to ensure its sustainability and maintainability over time."
+                    }
+                ]
+            },
+            "home-technology": {
+                "label": "Technologies we used"
+            },
+            "home-contact": {
+                "label": "Contact us",
+                "contact-social": {
+                    "label": "Our Socials"
+                },
+                "contact-email": {
+                    "label": "Send us email",
+                    "username-placeholder": "Enter Username",
+                    "email-placeholder": "Enter Email",
+                    "message-placeholder": "Enter Message",
+                    "send-button": "Send Us"
+                }
+            }
+        },
+        "about": {
+            "profile": {
+                "profile-description": [
+                "CodeHub is a platform I created to share knowledge and experiences related to technology, including Web Development, Mobile App Development, Artificial Intelligence, and many other Programming Languages. The goal is to help students and researchers easily understand new global technologies.",
+                "Lastly, if there are any mistakes or errors in any section, I sincerely apologize. Additionally, users can share their feedback with me through all of my social media channels. Thank you, and I wish everyone good health, good luck, and success in all your endeavors."
+                ],
+                "profile-imagelabel": "Hem Rithybondeth - Founder of Codehub"
+            },
+            "background": {
+                "background-label": "My Background",
+                "education-label": "My Education",
+                "education": {
+                    "college": {
+                        "year": "2020 - 2024",
+                        "major": "Techo Scholar in Bachelor of Computer Science",
+                        "name": "Cambodia Academy of Digital Technology, Phnom Penh"
+                    },
+                    "highschool": {
+                        "year": "2014 - 2020",
+                        "major": "Highschool",
+                        "name": "Hun Sen Krong Tep Nimit Highschool, Pailin"
+                    }
+                },
+                "experience-label": "My Work Experinces",
+                "experience": {
+                    "freelance": {
+                        "year": "2023 - Present",
+                        "major": "Work as a freelancer specializing in web and mobile development",
+                        "name": "Codehub"
+                    },
+                    "volunteer": {
+                        "year": "Febuary 2022 - May 2022",
+                        "major": "IDT Coding Instructor, Volunteer in IDT Encoding Program",
+                        "name": "Cambodia Academy of Digital Technology, Phnom Penh"
+                    },
+                    "intern": {
+                        "year": "June 2022 - September 2022",
+                        "major": "Web Developer Intern",
+                        "name": "ALLWEB IT Company Co., Ltd., Phnom Penh"
+                    }
+                }
+            },
+            "skill": {
+                "skill-label": "My Skill"
+            }
+        },
+        "article": {
+            "readmore-button": "Read More",
+            "detail": {
+                "date": "Publish Date",
+                "author": "Author",
+                "share-article-button": "Share this article",
+                "share-article": [
+                    { "id": 1, "icon": "/src/assets/socials/facebook-bw.png", "link": "" },
+                    { "id": 2, "icon": "/src/assets/socials/instagram-bw.png", "link": "" },
+                    { "id": 3, "icon": "/src/assets/socials/telegram-bw.png", "link": "" }
+                ],
+                "comment": {
+                    "label": "Comments",
+                    "count": "Comments",
+                    "placeholder": "Write Your Comment Here",
+                    "button": "Comment"
+                }
+            }
+        },
+        "course": {
+            "course-card": {
+                "additional-label": "Comming Soon" ,
+                "enroll-button": "Enroll Now",
+                "price": "Price"
+            },
+            "detail": {
+                "date": "Publish Date",
+                "author": "Author",
+                "share-work-button": "Share this work",
+                "share-work": [
+                    { "id": 1, "icon": "/src/assets/socials/facebook-bw.png", "link": "" },
+                    { "id": 2, "icon": "/src/assets/socials/instagram-bw.png", "link": "" },
+                    { "id": 3, "icon": "/src/assets/socials/telegram-bw.png", "link": "" }
+                ]
+            }
+        },
+        "work": {
+            "readmore-button": "Read More",
+            "detail": {
+                "date": "Publish Date",
+                "author": "Author"
+            }
+        },
+        "profile": {
+            "sidebar": {
+                "label": "Profile & Settings",
+                "items": [
+                    { "id": 1, "label": "Personal Info", "icon": "account_circle", "link": "personal" },
+                    { "id": 2, "label": "Change Password", "icon": "lock", "link": "change_password" },
+                    { "id": 3, "label": "Themes", "icon": "contrast", "link": "theme" },
+                    { "id": 4, "label": "Languages", "icon": "language", "link": "language" },
+                    { "id": 5, "label": "Logout", "icon": "logout", "link": "logout" }
+                ]
+            },
+            "personal-profile": {
+                "label": "Personal Information",
+                "description": "You can update your profile photo and personal details here.",
+                "buttons": {
+                    "edit": "Edit Profile",
+                    "cancel": "Cancel",
+                    "save": "Save Change"
+                },
+                "forms": {
+                    "username": {
+                        "label": "Username",
+                        "placeholder": "Enter new username..."
+                    },
+                    "gender": {
+                        "label": "Gender",
+                        "male": "Male",
+                        "female": "Female"
+                    },
+                    "dob": {
+                        "label": "Date of Birth"
+                    },
+                    "email": {
+                        "label": "Email Address",
+                        "placeholder": "Enter new email address..."
+                    }
+                }
+            },
+            "change-password": {
+                "label": "Change Password",
+                "description": "You can change your account password here.",
+                "buttons": {
+                    "edit": "Edit Profile",
+                    "cancel": "Cancel",
+                    "save": "Save Change"
+                },
+                "forms": {
+                    "current-password": {
+                        "label": "Current Password",
+                        "placeholder": "Enter your current password..."
+                    },
+                    "new-password": {
+                        "label": "New Password",
+                        "placeholder": "Enter your new password..."
+                    },
+                    "confirm-password": {
+                        "label": "Confirm Password",
+                        "placeholder": "Enter your confirm password..."
+                    }
+                }
+            },
+            "change-theme": {
+                "label": "Change Themes Mode",  
+                "description": "You can change your theme mode (Dark and Light) here.",
+                "form": {
+                    "label": "Theme",
+                    "light": "Light Mode",
+                    "dark": "Dark Mode"
+                }
+            },
+            "change-language": {
+                "label": "Change Languages",
+                "description": "You can change your languages (Khmer and English) here.",
+                "form": {
+                    "label": "Language",
+                    "khmer": "Khmer",
+                    "english": "English"
+                } 
+            },
+            "logout": {
+                "label": "Logout",
+                "description": "You can logout of your account here.",
+                "button": "Logout"
+            }
+        }
+    },
+    "auth": {
+        "signin": {
+            "welcome": "Welcome to Code Hub",
+            "email-placeholder": "Enter Your Email",
+            "password-placeholder": "Enter Your Password",
+            "signin-button": "Sign in",
+            "forgot-password": "Forgot Password",
+            "continue-with": "Or Continue With",
+            "no-account": "Don't have account yet?",
+            "register": "Register here"
+        },
+        "signup": {
+            "welcome": "Register to CodeHub",
+            "username-placeholder": "Enter Username",
+            "gender-placeholder": {
+                "disabled": "Gender",
+                "male": "Male",
+                "female": "Female"
+            },
+            "email-placeholder": "Enter Email",
+            "password-placeholder": "Enter Password",
+            "confirm-placeholder": "Enter Confirm Password",
+            "signup-button": "Register"
+        }
+    }
+}
