@@ -28,12 +28,12 @@ export default function ForgotPasswordPage() {
              {/* Form Section */}
             <div className="relative h-full w-1/2 flex justify-center items-center bg-primary tablet-xl:w-[60%] tablet-md:min-w-full">
                 <div className="w-3/4 p-7 flex flex-col items-center gap-3 rounded-lg bg-white dark:bg-dark tablet-lg:w-[85%] phone-lg:min-w-[95%]">
-                    <div className="flex items-center justify-center gap-2 mb-2">
+                    <div className="flex items-center justify-center gap-1 mb-2">
                         <img src={codeHubLogoPng} alt="Codehub Logo" className="size-10"/>
                         <p className="text-xl font-semibold">Forgot Password?</p>
                     </div>
-                    <p className="text-md">Please enter your email we will help you reset your password</p>
-                    <form className="w-full flex flex-col gap-3" onSubmit={handleSubmit(onSubmit)}>
+                    <p className="text-sm">Enter your email address to reset password</p>
+                    <form className="w-full flex flex-col gap-5" onSubmit={handleSubmit(onSubmit)}>
                         <div className="flex flex-col items-start gap-1"> 
                             <InputField 
                                 type="text" 
@@ -46,9 +46,7 @@ export default function ForgotPasswordPage() {
                                 <p className="text-xs text-primary">{formState.errors.email.message}</p>
                             </div>}
                         </div>
-                        <div className="flex justify-end">
-                            <AnimationButton type="submit" label="Send" className="text-xs"/>
-                        </div>
+                        <AnimationButton type="submit" label="Done" className="text-xs"/>
                     </form>
                 </div>
             </div>

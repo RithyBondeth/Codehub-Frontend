@@ -14,6 +14,8 @@ import ArticleDetailPage from "../pages/main/article/detail";
 import WorkDetailPage from "../pages/main/work/detail";
 import ProfilePage from "../pages/sub/profile";
 import ForgotPasswordPage from "../pages/auth/forgot-password";
+import ResetPasswordPage from "../pages/auth/forgot-password/reset-password";
+import NewPasswordPage from "../pages/auth/forgot-password/new-password";
 
 export const routers = createBrowserRouter([
     {
@@ -77,5 +79,13 @@ export const routers = createBrowserRouter([
     {
       path: "/forgot-password",
       element: <ForgotPasswordPage/>
+    },
+    {
+      path: "/reset-password",
+      element: <ResetPasswordPage/>
+    },
+    {
+      path: "/new-password",
+      element: <NewPasswordPage/>
     }
   ])

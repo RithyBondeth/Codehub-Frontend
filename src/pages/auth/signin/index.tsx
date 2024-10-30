@@ -40,9 +40,7 @@ export default function SigninPage() {
     }
 
     useEffect(() => {
-        if(token) {
-            navigate("/profile")   
-        }
+        if(token) navigate("/")   
     })
 
     return (

@@ -1,10 +1,10 @@
 import { create } from "zustand";
-import { SocialSignInState, SignInState, SignUpDataType, SignUpState } from "./type";
+import { SocialSignInState, SignInState, SignUpDataType, SignUpState, ForgotPasswordState } from "./type";
 import axios from "axios";
 import { SIGNIN_URL, SIGNUP_URL } from "../../../constants/api/auth.api";
 import { persist } from "zustand/middleware";
 
-export const useSignUpStore = create<SignUpState>()(persist((set) => ({
+export const useSignUpStore = create<SignUpState>()((set) => ({
     token: null,
     loading: false,
     error: null,
@@ -30,9 +30,6 @@ export const useSignUpStore = create<SignUpState>()(persist((set) => ({
         }  
        } 
     }
-}),{
-    name: "SignUpStore",
-    partialize: (state) => ({ token: state.token }), //Store only token
 }))
 
 export const useSignInStore = create<SignInState>()(persist((set) => ({
@@ -81,4 +78,23 @@ export const useSocialSignInStore = create<SocialSignInState>()(persist((set) =>
 }), {
     name: "SocialSignInStore",
     partialize: (state) => ({ token: state.token }), //Store only token
+}))
+
+export const useForgotPasswordStore = create<ForgotPasswordState>((set) => ({
+    loading: false,
+    error: null,
+    forgotPassword: async (apiUrl: string, email: string) => {
+        set({ loading: true, error: null })
+
+        try {
+            await axios.post(apiUrl, { email: email })
+            set({ loading: false, error: null })
+        } catch (error) {
+            if(axios.isAxiosError(error)) {
+                set({ loading: false, error: error.message })
+            } else {
+                set({ loading: false, error: "An error occurred while sending password reset link" })
+            }
+        }
+    }
 }))

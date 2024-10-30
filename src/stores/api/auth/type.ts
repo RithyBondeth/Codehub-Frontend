@@ -30,3 +30,9 @@ export type SocialSignInState = {
     setToken: (token: string) => void
     clearToken: () => void
 }
+
+export type ForgotPasswordState = {
+    loading: boolean
+    error: string | null
+    forgotPassword: (apiUrl: string, email: string) => Promise<void>   
+}

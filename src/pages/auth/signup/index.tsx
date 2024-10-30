@@ -13,11 +13,13 @@ import { SelectField } from "../../../components/utilities/forms/select"
 import { SignUpDataType } from "../../../stores/api/auth/type"
 import { useSignUpStore } from "../../../stores/api/auth/auth.store"
 import { useLanguageStore } from "../../../stores/language/language.store"
+import { useNavigate } from "react-router-dom"
 
 export default function SignupPage() {
     useDynamicTitle()
 
     const { visibility, setVisibility } = useVisibilityStore()
+    const navigate = useNavigate()
     const { t } = useTranslation()
     const langauge = useLanguageStore((state) => state.language)
     
@@ -26,7 +28,7 @@ export default function SignupPage() {
         document.documentElement.setAttribute("data-theme", theme)
     }, [theme]) 
 
-    const { loading, error, signUp } = useSignUpStore()
+    const { token, loading, error, signUp } = useSignUpStore()
     const { register, handleSubmit, formState, reset } = useForm<SignupFormFields>({ resolver: zodResolver(validationSchema) })
 
     const onSubmit: SubmitHandler<SignupFormFields> = async (data) => {
@@ -43,6 +45,10 @@ export default function SignupPage() {
     
         reset()
     }
+
+    useEffect(() => {
+        if(token) navigate("/signin")
+    })
 
     return (
         <div className="h-screen w-screen flex justify-between items-center">

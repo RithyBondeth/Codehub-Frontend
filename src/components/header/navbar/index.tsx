@@ -22,7 +22,7 @@ export default function Navbar() {
     const location = useLocation()
     const navigate = useNavigate()
 
-    const isAuth = true;
+    const isAuth = false;
 
     return (
         <nav className="shadow-lg flex justify-between items-center px-3 sticky top-0 z-10 bg-white dark:bg-dark">
