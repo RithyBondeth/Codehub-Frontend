@@ -9,6 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 export default function PersonalCard() {
     const { t } = useTranslation()
+    const [dateType, setDateType] = useState<"text" | "date">("text") 
     const [isUpdated, setIsUpdated] = useState(false)
     const profileImageRef = useRef<HTMLInputElement | null>(null)
     const [profileImage, setProfileImage] = useState<string | null>(null)
@@ -106,10 +107,12 @@ export default function PersonalCard() {
                             <td>
                                 <div>
                                     <InputField 
-                                        type="date" 
+                                        type={dateType} 
                                         id="dob" 
+                                        onFocus={() => setDateType("date")}
                                         disabled={!isUpdated}
-                                        className="custom-date-input"
+                                        className={`custom-date-input ${!isUpdated && 'opacity-50'}`}
+                                        placeholder={isUpdated ? t("pages.profile.personal-profile.forms.dob.placeholder") : "dd/mm/yyyy"}
                                         {...register("dob")}
                                     />
                                     {isUpdated && formState.errors.dob && <p className="text-xs text-red-500 mt-2">{formState.errors.dob.message}</p>}

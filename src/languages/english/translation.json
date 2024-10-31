@@ -228,7 +228,8 @@
                         "female": "Female"
                     },
                     "dob": {
-                        "label": "Date of Birth"
+                        "label": "Date of Birth",
+                        "placeholder": "Enter new date of birth..."
                     },
                     "email": {
                         "label": "Email Address",
@@ -298,6 +299,7 @@
         "signup": {
             "welcome": "Register to CodeHub",
             "username-placeholder": "Enter Username",
+            "date-placeholder": "Enter Date of Birth",
             "gender-placeholder": {
                 "disabled": "Gender",
                 "male": "Male",

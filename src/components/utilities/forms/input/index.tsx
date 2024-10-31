@@ -15,6 +15,7 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>((props, 
                 value={props.value}
                 placeholder={props.placeholder}
                 onChange={props.onChange}
+                onFocus={props.onFocus}
                 required={props.required}
                 disabled={props.disabled ? props.disabled : false} 
                 className={`outline-none bg-transparent w-full text-sm ${props.className} dark:placeholder-dark`}

@@ -5,7 +5,7 @@ import { codeHubLogoPng } from "../../../constants/header/header.constant"
 import { useVisibilityStore } from "../../../stores/auth/auth.store"
 import useDynamicTitle from "../../../hooks/dynamic-title.hook"
 import { useThemeStore } from "../../../stores/theme/theme.store"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { SubmitHandler, useForm } from "react-hook-form"
 import { SignupFormFields, validationSchema } from "./validation"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -17,7 +17,8 @@ import { useNavigate } from "react-router-dom"
 
 export default function SignupPage() {
     useDynamicTitle()
-
+    
+    const [dateType, setDateType] = useState<"text" | "date">("text") 
     const { visibility, setVisibility, newVisibility, setNewVisibility } = useVisibilityStore()
     const navigate = useNavigate()
     const { t } = useTranslation()
@@ -110,8 +111,11 @@ export default function SignupPage() {
                             </div>
                             <div className="w-full">
                                 <InputField
-                                    type="date"
+                                    type={dateType}
+                                    onFocus={() => setDateType("date")}
                                     id="dob"
+                                    placeholder={t("auth.signup.date-placeholder")}
+                                    className="custom-date-input"
                                     {...register("dob")}
                                 />
                                 {formState.errors.dob && <div className="w-full flex justify-start mt-1">

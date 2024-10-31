@@ -229,7 +229,8 @@
                         "female": "ស្រី"
                     },
                     "dob": {
-                        "label": "ថ្ងៃខែឆ្នាំកំណើត"
+                        "label": "ថ្ងៃខែឆ្នាំកំណើត",
+                        "placeholder": "បញ្ចូលថ្ងៃខែឆ្នាំកំណេីតថ្មី..."
                     },
                     "email": {
                         "label": "អាសយដ្ឋានអ៊ីមែល",
@@ -299,6 +300,7 @@
         "signup": {
             "welcome": "ចុះឈ្មោះជាមួយ CodeHub",
             "username-placeholder": "បញ្ចូលឈ្មោះអ្នកប្រើ",
+            "date-placeholder": "បញ្ចូលថ្ងៃខែឆ្នាំកំណេីត",
             "gender-placeholder": {
                 "disabled": "ភេទ",
                 "male": "ប្រុស",

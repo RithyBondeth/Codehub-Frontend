@@ -10,5 +10,6 @@ export type InputFieldProps = {
     required?: boolean
     disabled?: boolean
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+    onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void
     className?: string
 }
