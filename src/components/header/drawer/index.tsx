@@ -1,10 +1,14 @@
 import { Link } from "react-router-dom";
 import { DrawerProps } from "./type";
+import { useDrawerStore } from "../../../stores/drawer/drawer.store";
 
 export default function Drawer(props: DrawerProps) {
+
+    const {setIsOpen} = useDrawerStore()
+    
     return (
         <div className={`drawer drawer-end ${props.className}`}>
-            <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
+            <input id="my-drawer-4" type="checkbox" className="drawer-toggle" onChange={(e) => setIsOpen(e.target.checked)}/>
             <div className="drawer-content">
                 {/* Page content here */}
                 <label htmlFor="my-drawer-4" className="material-symbols-outlined rounded-sm p-1 mt-1 text-primary">menu</label>

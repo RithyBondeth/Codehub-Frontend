@@ -6,9 +6,11 @@ import BackgroundCard from "../../../components/about/background-card"
 import ContactCard from "../../../components/home/contact-card"
 import { useEffect } from "react"
 import gsap from "gsap"
+import { useDrawerStore } from "../../../stores/drawer/drawer.store"
 
 export default function AboutPage() {
     useDynamicTitle()
+    const isOpen = useDrawerStore((state) => state.isOpen)
     const { t } = useTranslation()
 
     useEffect(() => {
@@ -20,8 +22,8 @@ export default function AboutPage() {
         <div className="container my-10">
             {/* Label Section */}
             <div className="flex flex-col items-center gap-5 mb-5">
-                <p id="about-box" className="text-3xl font-medium">{t("web-title.about")}</p>
-                <Divider id="about-box"/>
+                <p id={`${!isOpen} && "about-box"`} className="text-3xl font-medium">{t("web-title.about")}</p>
+                <Divider id={`${!isOpen} && "about-box"`}/>
                 {/* Profile Section */}
                 <ProfileCard/>
                 {/* Background Section */} 
