@@ -18,7 +18,7 @@ import { useNavigate } from "react-router-dom"
 export default function SignupPage() {
     useDynamicTitle()
 
-    const { visibility, setVisibility } = useVisibilityStore()
+    const { visibility, setVisibility, newVisibility, setNewVisibility } = useVisibilityStore()
     const navigate = useNavigate()
     const { t } = useTranslation()
     const langauge = useLanguageStore((state) => state.language)
@@ -113,7 +113,6 @@ export default function SignupPage() {
                                     type="date"
                                     id="dob"
                                     {...register("dob")}
-                                    className="custom-date-input"
                                 />
                                 {formState.errors.dob && <div className="w-full flex justify-start mt-1">
                                     <p className="text-xs text-primary">{formState.errors.dob.message}</p>
@@ -152,9 +151,9 @@ export default function SignupPage() {
                         <div className="w-full mt-4">
                             <InputField
                                 preffixIcon="lock"
-                                suffixIcon={visibility ? "visibility_off" : "visibility"}
-                                suffixClick={setVisibility}
-                                type={visibility ? "text" : "password"}
+                                suffixIcon={newVisibility ? "visibility_off" : "visibility"}
+                                suffixClick={setNewVisibility}
+                                type={newVisibility ? "text" : "password"}
                                 id="confirm-password"
                                 {...register("confirmPassword")}
                                 placeholder={t("auth.signup.confirm-placeholder")}

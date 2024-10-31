@@ -15,7 +15,7 @@ export default function ThemeSwitcher(props: ThemeSwitcherProps) {
     }, [theme])
 
     return (
-        <label className={`swap swap-rotate ${props.className}`}>
+        <label className={`swap swap-rotate ${props.className} tablet-md:hidden`}>
             {/* This hidden checkbox controls the state */}
             <input type="checkbox" onChange={toggleTheme} className="theme-controller" value="synthwave" checked={theme === "dark"}/>
              {/* Moon icon */}

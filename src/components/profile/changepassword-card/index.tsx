@@ -5,9 +5,11 @@ import { useTranslation } from "react-i18next";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { ChangePasswordFields, ChangePasswordSchema } from "./validation";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useVisibilityStore } from "../../../stores/auth/auth.store";
 
 export default function ChangePasswordCard() {
     const { t } = useTranslation()
+    const { visibility, setVisibility, newVisibility, setNewVisibility, confirmVisibility, setConfirmVisibility } = useVisibilityStore()
     const [isUpdated, setIsUpdated] = useState(false)
 
     const { register, handleSubmit, formState, reset } = useForm<ChangePasswordFields>({ resolver: zodResolver(ChangePasswordSchema) })
@@ -49,8 +51,10 @@ export default function ChangePasswordCard() {
                         <td className="w-2/3">
                             <div>
                                 <InputField 
-                                    type="text" 
                                     id="currentPassword" 
+                                    suffixIcon={visibility ? "visibility_off" : "visibility"}
+                                    suffixClick={setVisibility}
+                                    type={visibility ? "text" : "password"}
                                     disabled={!isUpdated} 
                                     placeholder={t("pages.profile.change-password.forms.current-password.placeholder")}  
                                     {...register("currentPassword")}
@@ -68,8 +72,10 @@ export default function ChangePasswordCard() {
                         <td className="w-2/3">
                             <div>
                                 <InputField 
-                                    type="text" 
                                     id="newPassword"
+                                    suffixIcon={newVisibility ? "visibility_off" : "visibility"}
+                                    suffixClick={setNewVisibility}
+                                    type={newVisibility ? "text" : "password"}
                                     disabled={!isUpdated} 
                                     placeholder={t("pages.profile.change-password.forms.new-password.placeholder")}  
                                     {...register("newPassword")}
@@ -87,8 +93,10 @@ export default function ChangePasswordCard() {
                         <td className="w-2/3">
                             <div>
                                 <InputField 
-                                    type="text" 
                                     id="confirmPassword" 
+                                    suffixIcon={confirmVisibility ? "visibility_off" : "visibility"}
+                                    suffixClick={setConfirmVisibility}
+                                    type={confirmVisibility ? "text" : "password"}
                                     disabled={!isUpdated} 
                                     placeholder={t("pages.profile.change-password.forms.confirm-password.placeholder")}  
                                     {...register("confirmPassword")}

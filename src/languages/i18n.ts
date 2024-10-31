@@ -11,7 +11,7 @@ i18n
         en: { translation: enTranslation },
         kh: { translation: khTranslation }
     },
-    fallbackLng: "en",
+    fallbackLng: "kh",
     lng: useLanguageStore.getState().language,
     interpolation: {
         escapeValue: false,

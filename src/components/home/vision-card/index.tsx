@@ -42,7 +42,7 @@ export default function VisionCard() {
     return (
         <div>
             {data && <div className="w-full flex flex-col gap-5">
-                <p className="text-3xl text-center font-medium">{t("pages.home.home-vision.label")}</p>
+                <p className="text-3xl text-center font-medium tablet-md:text-2xl phone-xl:text-xl">{t("pages.home.home-vision.label")}</p>
                 <Divider/>
                 {<div className="flex flex-col gap-5">
                     {data.map((vision, index) => (

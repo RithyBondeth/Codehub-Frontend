@@ -4,9 +4,10 @@ import { InputField } from "../../../components/utilities/forms/input";
 import { codeHubLogoPng } from "../../../constants/header/header.constant";
 import { ForgotPasswordFormFields, forgotPasswordSchema } from "./validation";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useTranslation } from "react-i18next";
 
 export default function ForgotPasswordPage() {
-
+    const { t } = useTranslation()
     const { register, formState, handleSubmit } = useForm<ForgotPasswordFormFields>({ resolver: zodResolver(forgotPasswordSchema) })
 
     const onSubmit: SubmitHandler<ForgotPasswordFormFields> = async (data) => {
@@ -30,23 +31,23 @@ export default function ForgotPasswordPage() {
                 <div className="w-3/4 p-7 flex flex-col items-center gap-3 rounded-lg bg-white dark:bg-dark tablet-lg:w-[85%] phone-lg:min-w-[95%]">
                     <div className="flex items-center justify-center gap-1 mb-2">
                         <img src={codeHubLogoPng} alt="Codehub Logo" className="size-10"/>
-                        <p className="text-xl font-semibold">Forgot Password?</p>
+                        <p className="text-xl font-semibold">{t("auth.forgot-password.label")}</p>
                     </div>
-                    <p className="text-sm">Enter your email address to reset password</p>
+                    <p className="text-sm">{t("auth.forgot-password.description")}</p>
                     <form className="w-full flex flex-col gap-5" onSubmit={handleSubmit(onSubmit)}>
                         <div className="flex flex-col items-start gap-1"> 
                             <InputField 
                                 type="text" 
                                 id="email"
                                 preffixIcon="email" 
-                                placeholder="Enter your email" 
+                                placeholder={t("auth.forgot-password.placeholder")} 
                                 {...register("email")}
                             />
                             {formState.errors.email && <div className="w-full flex justify-start mt-1">
                                 <p className="text-xs text-primary">{formState.errors.email.message}</p>
                             </div>}
                         </div>
-                        <AnimationButton type="submit" label="Done" className="text-xs"/>
+                        <AnimationButton type="submit" label={t("auth.forgot-password.button")}  className="text-xs"/>
                     </form>
                 </div>
             </div>

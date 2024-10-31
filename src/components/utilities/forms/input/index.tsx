@@ -19,6 +19,9 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>((props, 
                 disabled={props.disabled ? props.disabled : false} 
                 className={`outline-none bg-transparent w-full text-sm ${props.className} dark:placeholder-dark`}
             />
+            {props.suffixIcon && (
+                <span className="material-symbols-outlined mr-2 cursor-pointer" onClick={props.suffixClick}>{props.suffixIcon}</span>
+            )}
         </div>
     );
 });

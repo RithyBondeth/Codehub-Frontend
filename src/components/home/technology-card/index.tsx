@@ -7,7 +7,7 @@ export default function TechnologyCard(props: TechCardProps) {
 
     return (
         <div className="w-full flex flex-col gap-5">
-            <p className="text-3xl text-center font-medium">{t("pages.home.home-technology.label")}</p> 
+            <p className="text-3xl text-center font-medium tablet-md:text-2xl phone-xl:text-xl">{t("pages.home.home-technology.label")}</p> 
             <Divider/>
             <div className="grid grid-cols-4 place-items-stretch gap-1 tablet-md:grid-cols-3 tablet-sm:grid-cols-2">
             {props.data.map((item) => (

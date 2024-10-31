@@ -307,6 +307,25 @@
             "password-placeholder": "Enter Password",
             "confirm-placeholder": "Enter Confirm Password",
             "signup-button": "Register"
+        },
+        "forgot-password": {
+            "label": "Forgot Password?",
+            "description": "Enter your email address to reset password",
+            "placeholder": "Enter your email",
+            "button": "Done"
+        },
+        "reset-password": {
+            "label": "Check Your Email Address",
+            "description": "We have sent you a reset password token via your email",
+            "placeholder": "Enter your token",
+            "button": "Done"
+        },
+        "new-password": {
+            "label": "Create Your New Password",
+            "description": "You can create your new password of your account here",
+            "newpassword-placeholder": "Enter your new password",
+            "confirm-password-placeholder": "Enter confirm new password",
+            "button": "Done"
         }
     }
 }

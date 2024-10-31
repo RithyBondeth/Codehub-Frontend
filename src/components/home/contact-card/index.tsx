@@ -20,7 +20,7 @@ export default function ContactCard() {
 
     return (
         <div className="w-full flex flex-col items-center gap-5">
-            <p className="text-3xl text-center font-medium">{t("pages.home.home-contact.label")}</p>
+            <p className="text-3xl text-center font-medium tablet-md:text-2xl phone-xl:text-xl">{t("pages.home.home-contact.label")}</p>
             <Divider/>
             <div className="flex flex-col items-center gap-5">
                 <p>{t("pages.home.home-contact.contact-social.label")}</p>

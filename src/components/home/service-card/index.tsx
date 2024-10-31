@@ -49,7 +49,7 @@ export default function ServiceCard() {
     return (
         <div>
             {data && <div className="w-full flex flex-col items-center gap-5">
-                <p id="service-box" className="text-3xl text-center font-medium">{t("pages.home.home-service.label")}</p>
+                <p id="service-box" className="text-3xl text-center font-medium tablet-md:text-2xl phone-xl:text-xl">{t("pages.home.home-service.label")}</p>
                 <Divider id="service-box"/>
                 <p id="service-box" className="leading-10">{language === "kh" ? data[0].khmerContent : data[0].content}</p>
                 <div className="grid grid-cols-2 gap-5 phone-xl:grid-cols-1">
