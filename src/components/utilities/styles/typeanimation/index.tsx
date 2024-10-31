@@ -7,7 +7,7 @@ export default function TextTypeAnimation(props: TextTypeAnimationProps) {
             sequence={props.text}
             wrapper="span"
             speed={50}
-            style={{ fontSize: '2em', display: 'inline-block' }}
+            style={{ fontSize: '1.8em', display: 'inline-block' }}
             repeat={Infinity}
             className={props.className}
         />

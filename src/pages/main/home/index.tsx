@@ -33,13 +33,11 @@ export default function HomePage() {
     return (
         <div className="container flex flex-col items-start gap-20 my-10">
             {/* Label Section */}
-            <div className="w-full flex flex-col gap-10">
-                <TextTypeAnimation 
-                    text={[homeLabel[0], 2000, homeLabel[1], 2000]}
-                    key={homeLabel.join(",")} //Force Rerender When Component Change
-                    className="font-medium" 
-                />
-            </div>
+            <TextTypeAnimation 
+                text={[homeLabel[0], 2000, homeLabel[1], 2000]}
+                key={homeLabel.join(",")} //Force Rerender When Component Change
+                className="font-medium" 
+            />
             {/* Our Service Section */}
             <ServiceCard/>
             {/* Our Vision Section */}

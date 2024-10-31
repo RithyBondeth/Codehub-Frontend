@@ -5,14 +5,18 @@ import { ResetPasswordFormFields, resetPasswordSchema } from "./validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AnimationButton } from "../../../../components/utilities/buttons/animation";
 import { useTranslation } from "react-i18next";
+import { useResetPasswordStore } from "../../../../stores/api/auth/auth.store";
+import { useNavigate } from "react-router-dom";
 
 export default function ResetPasswordPage() {
     const { t } = useTranslation()
-
+    const navigate = useNavigate()
+    const { setResetToken } = useResetPasswordStore()
     const { register, formState, handleSubmit } = useForm<ResetPasswordFormFields>({ resolver: zodResolver(resetPasswordSchema) })
 
     const onSubmit: SubmitHandler<ResetPasswordFormFields> = async (data) => {
-        console.log(data)
+        await setResetToken(data.token)
+        navigate("/new-password")
     }  
 
     return (

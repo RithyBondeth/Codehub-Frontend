@@ -317,7 +317,7 @@
         "reset-password": {
             "label": "Check Your Email Address",
             "description": "We have sent you a reset password token via your email",
-            "placeholder": "Enter your token",
+            "placeholder": "Enter the token you received",
             "button": "Done"
         },
         "new-password": {

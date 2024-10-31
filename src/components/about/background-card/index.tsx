@@ -6,7 +6,7 @@ export default function BackgroundCard() {
 
     return (
         <div className="w-full flex flex-col items-center gap-10">
-            <p className="text-3xl font-medium">{t("pages.about.background.background-label")}</p>
+            <p className="text-3xl font-medium tablet-md:text-2xl phone-xl:text-xl">{t("pages.about.background.background-label")}</p>
             <Divider/>
             <div className="flex flex-row-reverse items-start gap-10 tablet-md:flex-col">
                 <div className="flex flex-col items-start gap-5">

@@ -6,15 +6,23 @@ import { NewPasswordFormFields, NewPasswordSchema } from "./validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslation } from "react-i18next";
 import { useVisibilityStore } from "../../../../stores/auth/auth.store";
+import { useResetPasswordStore } from "../../../../stores/api/auth/auth.store";
+import { RESET_PASSWORD_URL } from "../../../../constants/api/auth.api";
+import { useNavigate } from "react-router-dom";
+import { useLanguageStore } from "../../../../stores/language/language.store";
 
 export default function NewPasswordPage() {
     const { t } = useTranslation()
+    const language = useLanguageStore((state) => state.language)
+    const navigate = useNavigate()
+    const { resetToken, resetPassword, loading, error } = useResetPasswordStore()
     const { newVisibility, setNewVisibility, confirmVisibility, setConfirmVisibility } = useVisibilityStore()
 
     const { register, handleSubmit, formState } = useForm<NewPasswordFormFields>({ resolver: zodResolver(NewPasswordSchema) })
 
     const onSubmit: SubmitHandler<NewPasswordFormFields> = async (data) => {
-        console.log(data)
+        await resetPassword(RESET_PASSWORD_URL(resetToken as string), data.password)
+        navigate("/signin")
     }
 
     return (
@@ -32,6 +40,14 @@ export default function NewPasswordPage() {
             {/* Form Section */}
             <div className="relative h-full w-1/2 flex justify-center items-center bg-primary tablet-xl:w-[60%] tablet-md:min-w-full">
                 <div className="w-3/4 p-7 flex flex-col items-center gap-3 rounded-lg bg-white dark:bg-dark tablet-lg:w-[85%] phone-lg:min-w-[95%]">
+                    {loading && <div className="absolute top-[45%] flex items-center gap-2 rounded-md shadow-md bg-white dark:bg-dark text-sm p-5">
+                            <p>{language === "kh" ? "សូមមេត្តារង់ចាំ" : "Waiting"}</p>
+                            <span className="loading loading-spinner loading-md"></span>
+                        </div>}
+                        {error && <div className="absolute top-[45%] flex items-center gap-2 rounded-md shadow-md bg-white dark:bg-dark text-sm p-5">
+                            <p>{error}</p>
+                            <p className="underline cursor-pointer" onClick={() => window.location.reload()}>{language === "kh" ? "ព្យាយាមម្តងទៀត" : "Try Again"}</p>    
+                    </div>}
                     <div className="flex items-center justify-center gap-1 mb-2">
                         <img src={codeHubLogoPng} alt="Codehub Logo" className="size-10"/>
                         <p className="text-xl font-semibold">{t("auth.new-password.label")}</p> 

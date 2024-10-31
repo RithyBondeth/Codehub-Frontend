@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { SocialSignInState, SignInState, SignUpDataType, SignUpState, ForgotPasswordState } from "./type";
+import { SocialSignInState, SignInState, SignUpDataType, SignUpState, ForgotPasswordState, ResetPasswordState } from "./type";
 import axios from "axios";
 import { SIGNIN_URL, SIGNUP_URL } from "../../../constants/api/auth.api";
 import { persist } from "zustand/middleware";
@@ -93,7 +93,31 @@ export const useForgotPasswordStore = create<ForgotPasswordState>((set) => ({
             if(axios.isAxiosError(error)) {
                 set({ loading: false, error: error.message })
             } else {
-                set({ loading: false, error: "An error occurred while sending password reset link" })
+                set({ loading: false, error: "An error occurred while sending password reset token" })
+            }
+        } 
+    }
+}))
+
+export const useResetPasswordStore = create<ResetPasswordState>()((set) => ({
+    data: null,
+    resetToken: null,
+    loading: false,
+    error: null,
+    setResetToken: async (token: string) => set({ resetToken: token }),
+    resetPassword: async (apiUrl: string, newPassword: string) => {
+        set({ loading: true, error: null })
+
+        try {
+            const response = await axios.post(apiUrl, {
+                newPassword: newPassword
+            })
+            set({ loading: false, error: null, data: response.data })
+        } catch (error) {
+            if(axios.isAxiosError(error)) {
+                set({ loading: false, error: error.message })   
+            } else {
+                set({ loading: false, error: "An error occurred while restting password" })
             }
         }
     }
