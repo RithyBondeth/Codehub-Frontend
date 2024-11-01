@@ -1,7 +1,7 @@
 export type SelectProps = {
     id: string
     name?: string
-    value: string | null
+    value?: string | null
     onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void,
     disabledLabel?: string,
     reqiured?: boolean
