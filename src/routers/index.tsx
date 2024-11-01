@@ -16,6 +16,7 @@ import ProfilePage from "../pages/sub/profile";
 import ForgotPasswordPage from "../pages/auth/forgot-password";
 import ResetPasswordPage from "../pages/auth/forgot-password/reset-password";
 import NewPasswordPage from "../pages/auth/forgot-password/new-password";
+import ProtectedRoute from "./protected-route";
 
 export const routers = createBrowserRouter([
     {
@@ -64,7 +65,11 @@ export const routers = createBrowserRouter([
         },
         {
           path: "/profile",
-          element: <ProfilePage/>
+          element: (
+            <ProtectedRoute>
+              <ProfilePage/>
+            </ProtectedRoute>
+          )
         }
       ]
     },

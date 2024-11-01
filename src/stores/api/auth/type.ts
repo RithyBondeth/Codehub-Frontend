@@ -27,7 +27,7 @@ export type SocialSignInState = {
     loading: boolean
     error: string | null
     socialSignIn: (apiUrl: string) => Promise<void>
-    setToken: (token: string) => void
+    setToken: (token: string) => Promise<void>
     clearToken: () => void
 }
 

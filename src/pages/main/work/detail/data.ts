@@ -2,7 +2,7 @@ export const workData = {
     card: {
         title: "Visioncare AI Platform - provide a consultancy service for diagnosing eye diseases",
         titleKhmer: "Visioncare AI - ផ្ដល់សេវាពិគ្រោះយោបល់សម្រាប់ការធ្វើរោគវិនិច្ឆ័យជម្ងឺភ្នែក",
-        poster: "/src/assets/visioncare-ai.png",
+        poster: "/src/assets/works/visioncare.png",
         description: "VisionCare AI is a mobile and web application that integrates with machine learning to provide a consultancy service for diagnosing eye diseases.",
         descriptionKhmer: "VisionCare AI គឺជាកម្មវិធីទូរស័ព្ទនិងគេហទំព័រ ដែលបញ្ចូលបច្ចេកវិទ្យា Machine Learning ដើម្បីផ្ដល់សេវាពិគ្រោះយោបល់សម្រាប់ការធ្វើរោគវិនិច្ឆ័យជម្ងឺភ្នែក។"
     },

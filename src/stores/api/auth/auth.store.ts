@@ -81,7 +81,7 @@ export const useSocialSignInStore = create<SocialSignInState>()(persist((set) =>
             console.log(error)
         }
     },
-    setToken: (token: string) => set({ token: token }),
+    setToken: async (token: string) => set({ token: token }),
     clearToken: () => set({ token: null })
 }), {
     name: "SocialSignInStore",
