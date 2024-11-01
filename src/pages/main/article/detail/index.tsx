@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import Divider from "../../../../components/utilities/styles/divider";
-import { ShareArticleItems } from "./type";
+
 import useDynamicTitle from "../../../../hooks/dynamic-title.hook";
 import { useEffect } from "react";
 import { useSingleArtileStore } from "../../../../stores/api/article/article.store";
@@ -19,6 +19,7 @@ import { useAuthenticationStore, useSignInStore, useSocialSignInStore } from "..
 import { useCountCommentStore, useGetAllCommentStore, usePostCommentStore } from "../../../../stores/api/comment/comment.store";
 import { COUNT_COMMENTS_URL, GET_ALL_COMMENTS_URL, POST_COMMENT_URL } from "../../../../constants/api/comment.api";
 import { commentDateFormatter } from "../../../../util/commentdate-format.util";
+import { ShareArticleItems } from "./type";
 
 export default function ArticleDetailPage() {
     useDynamicTitle()
