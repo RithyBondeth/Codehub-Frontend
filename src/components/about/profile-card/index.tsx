@@ -1,6 +1,7 @@
 import { useEffect } from "react"
 import { useTranslation } from "react-i18next"
 import gsap from "gsap"
+import { FOUNDER_IMAGE_URL } from "../../../constants/api/about.api"
 
 export default function ProfileCard() {
     const { t } = useTranslation()
@@ -18,7 +19,7 @@ export default function ProfileCard() {
         <div className="my-10 flex flex-col justify-start gap-10">
             <div className="flex justify-between items-stretch gap-5 tablet-md:flex-col tablet-md:items-center">
                 <div id="profile-box" className="w-[35%] flex flex-col items-center tablet-md:w-1/2">
-                    <img src="/src/assets/about/founder.jpg" alt="Codehub Founder" className="w-full"/>
+                    <img src={FOUNDER_IMAGE_URL} alt="Codehub Founder" className="w-full"/>
                     <p className="mt-3 text-sm text-gray-500 tablet-md:text-center tablet-md:leading-8">{t("pages.about.profile.profile-imagelabel")}</p>
                 </div>
                 <div id="profile-box" className="w-[65%] leading-10 px-5 text-md text-gray-500 tablet-md:w-full">

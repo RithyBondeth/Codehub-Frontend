@@ -16,7 +16,7 @@ export default function WorkCard(props: WorkCardProps) {
             <Divider/>
             <div className="flex flex-col justify-start gap-2 py-3">
                 <p className={`text-md font-semibold ${language === "kh" && "leading-7"}`}>{props.title}</p>
-                <p className={`text-xs leading-5 ${language === "kh" && "leading-7"}`}>{props.description}</p>
+                <p className="text-xs leading-6">{props.description}</p>
             </div>
             <AnimationButton label={t("pages.work.readmore-button")} className="text-xs w-fit" onClick={() => { navigate("/work/1") }}/>
         </div>
