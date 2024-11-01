@@ -144,6 +144,7 @@ export const useCurrentUserStore = create<CurrentUserState>()((set) => ({
             })
             
             set({ loading: false, data: response.data })
+            console.log("Current user: ", response.data)
         } catch (error) {
             if(axios.isAxiosError(error)) {
                 set({ loading: false, error: error.message })

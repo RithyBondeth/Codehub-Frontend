@@ -8,7 +8,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AnimationButton } from "../../utilities/buttons/animation";
 import ProfileCard from "../profile-card";
 import ThemeSwitcher from "../theme-switcher";
-import { useAuthenticationStore, useCurrentUserStore, useSignInStore } from "../../../stores/api/auth/auth.store";
+import { useAuthenticationStore, useCurrentUserStore, useSignInStore, useSocialSignInStore } from "../../../stores/api/auth/auth.store";
 import { useEffect } from "react";
 import { GET_CURRENT_USER_URL } from "../../../constants/api/auth.api";
 
@@ -28,12 +28,20 @@ export default function Navbar() {
     
     //Get the current user
     const emailToken = useSignInStore((state) => state.token)
+    const socialToken = useSocialSignInStore((state) => state.token)
+    
     const currentUser = useCurrentUserStore((state) => state.data)
     const fetchCurrentUser = useCurrentUserStore((state) => state.fetchCurrentUser)
 
     useEffect(() => {  
-        fetchCurrentUser(GET_CURRENT_USER_URL, emailToken as string)
-    }, [emailToken, fetchCurrentUser])
+       if(emailToken && !socialToken) {
+            fetchCurrentUser(GET_CURRENT_USER_URL, emailToken as string)
+       }
+
+       if(socialToken && !emailToken) {
+         fetchCurrentUser(GET_CURRENT_USER_URL, socialToken as string)
+       }
+    }, [emailToken, fetchCurrentUser, socialToken])
 
     return (
         <nav className="shadow-lg flex justify-between items-center px-3 sticky top-0 z-10 bg-white dark:bg-dark">

@@ -1,7 +1,7 @@
 import { InputFieldProps } from "./type"
 import { forwardRef } from "react";
 
-export const InputField = forwardRef<HTMLInputElement, InputFieldProps>((props, ref) => {
+export const InputField = forwardRef<HTMLInputElement, InputFieldProps>((props, ref) => {   
     return (
         <div className="w-full flex items-center p-4 rounded-xl bg-gray-100 dark:bg-darklight dark:text-dark">
             {props.preffixIcon && (

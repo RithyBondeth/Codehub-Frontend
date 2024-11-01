@@ -6,9 +6,12 @@ import { useRef, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { PersonalInfoFields, personalInfoSchema } from "./validation";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useCurrentUserStore } from "../../../stores/api/auth/auth.store";
+import { useLanguageStore } from "../../../stores/language/language.store";
 
 export default function PersonalCard() {
     const { t } = useTranslation()
+    const language = useLanguageStore((state) => state.language)
     const [dateType, setDateType] = useState<"text" | "date">("text") 
     const [isUpdated, setIsUpdated] = useState(false)
     const profileImageRef = useRef<HTMLInputElement | null>(null)
@@ -29,6 +32,7 @@ export default function PersonalCard() {
         profileImageRef.current?.click()
     }
 
+    const currentUser = useCurrentUserStore((state) => state.data)
     const { register, handleSubmit, formState, reset  } = useForm<PersonalInfoFields>({ resolver: zodResolver(personalInfoSchema) })
     const onSubmit: SubmitHandler<PersonalInfoFields> = async (data) => {
         console.log(data)
@@ -58,7 +62,7 @@ export default function PersonalCard() {
                 </div>
              </div>
              <div className="w-full flex flex-col items-start gap-5 mt-3">
-                <div className="relative h-48 min-w-48 rounded-full overflow-hidden bg-center bg-cover bg-no-repeat bg-gray-200" style={{ backgroundImage: `url(${profileImage})` }}>
+                <div className="relative h-48 min-w-48 rounded-full overflow-hidden bg-center bg-cover bg-no-repeat bg-gray-200" style={{ backgroundImage: `url(${currentUser && currentUser.avatar})` }}>
                     {isUpdated && <div className="absolute bottom-0 left-0 right-0 h-10 flex justify-center items-center cursor-pointer bg-black text-white" onClick={handleProfileImageButton}>
                         <span className="material-symbols-outlined">camera_alt</span>
                         <input type="file" ref={profileImageRef} onChange={handleProfileImageChange} className="hidden"/>
@@ -75,7 +79,7 @@ export default function PersonalCard() {
                                     <InputField 
                                         type="text" 
                                         id="username" 
-                                        placeholder={isUpdated ? `${t("pages.profile.personal-profile.forms.username.placeholder")}` : "Rithy Bondeth"} 
+                                        placeholder={isUpdated ? `${t("pages.profile.personal-profile.forms.username.placeholder")}` : `${currentUser && currentUser.username}`} 
                                         disabled={!isUpdated} 
                                         {...register("username")}
                                     />
@@ -92,6 +96,7 @@ export default function PersonalCard() {
                                         disabledLabel="Gender"
                                         className="dark:bg-darklight dark:texßt-dark"
                                         disabled={!isUpdated}
+                                        value={currentUser && currentUser.gender}
                                         option={[
                                             { id: 1, value: "male", label: t("pages.profile.personal-profile.forms.gender.male") },
                                             { id: 2, value: "female", label: t("pages.profile.personal-profile.forms.gender.female") }
@@ -112,7 +117,7 @@ export default function PersonalCard() {
                                         onFocus={() => setDateType("date")}
                                         disabled={!isUpdated}
                                         className={`custom-date-input ${!isUpdated && 'opacity-50'}`}
-                                        placeholder={isUpdated ? t("pages.profile.personal-profile.forms.dob.placeholder") : "dd/mm/yyyy"}
+                                        placeholder={isUpdated ? t("pages.profile.personal-profile.forms.dob.placeholder") : `${currentUser?.dob === null ? language === "kh" ? "មិនមាន" : "None" : currentUser?.dob}`}
                                         {...register("dob")}
                                     />
                                     {isUpdated && formState.errors.dob && <p className="text-xs text-red-500 mt-2">{formState.errors.dob.message}</p>}
@@ -127,7 +132,7 @@ export default function PersonalCard() {
                                     <InputField 
                                         type="email" 
                                         id="email" 
-                                        placeholder={isUpdated ? `${t("pages.profile.personal-profile.forms.email.placeholder")}` : "rithybondeth999@gmail.com"} 
+                                        placeholder={isUpdated ? `${t("pages.profile.personal-profile.forms.email.placeholder")}` : `${currentUser && currentUser.email}`} 
                                         disabled={!isUpdated} 
                                         {...register("email")}
                                     />
