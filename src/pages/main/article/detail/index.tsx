@@ -49,7 +49,7 @@ export default function ArticleDetailPage() {
         if(isAuth) {
             postComment(POST_COMMENT_URL, (emailToken || socialToken) as string, data.comment, articleId as string)
             reset()
-            window.location.reload()
+            naviagte(`/article/${articleId}`)
         } else  {
            naviagte("/signin")
         }
