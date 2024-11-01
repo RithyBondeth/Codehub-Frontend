@@ -1,10 +1,10 @@
 {
     "navbar": [
-        { "id": 1, "link": "/", "label": "ទំព័រដើម" },
-        { "id": 2, "link": "/article", "label": "អត្ថបទ" },
-        { "id": 3, "link": "/course", "label": "មេរៀន" },
-        { "id": 4, "link": "/work", "label": "ការងារយេីង" },
-        { "id": 5, "link": "/about", "label": "អំពីយេីង" }
+        { "id": 1, "link": "/", "label": "ទំព័រដើម", "icon": "home" },
+        { "id": 2, "link": "/article", "label": "អត្ថបទ", "icon": "article" },
+        { "id": 3, "link": "/course", "label": "មេរៀន", "icon": "school" },
+        { "id": 4, "link": "/work", "label": "ការងារយេីង", "icon": "business_center" },
+        { "id": 5, "link": "/about", "label": "អំពីយេីង", "icon": "badge" }
     ],
     "footer": {
         "more": {
@@ -169,6 +169,7 @@
                 ],
                 "comment": {
                     "label": "មតិយោបល់",
+                    "no-content": "គ្មានមតិយោបល់",
                     "count": "មតិយោបល់",
                     "placeholder": "សរសេរ​មតិយោបល់​របស់​អ្នក​នៅ​ទីនេះ",
                     "button": "មតិយោបល់"

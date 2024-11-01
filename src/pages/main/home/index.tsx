@@ -24,6 +24,7 @@ export default function HomePage() {
     const { setIsAuth } = useAuthenticationStore()
     const socialToken = useSocialSignInStore((state) => state.token)
     const setSocialToken = useSocialSignInStore((state) => state.setToken)
+
     const emailToken = useSignInStore((state) => state.token)
 
     useEffect(() => {
@@ -31,10 +32,11 @@ export default function HomePage() {
         const token = queryParams.get("token")
         setSocialToken(token as string)
 
-        if(socialToken && !emailToken) {
+        if(socialToken) {
             setIsAuth(true)
-        } else {
-            setIsAuth(false)
+        } 
+        if(emailToken) {
+            setIsAuth(true)
         }
     })
 

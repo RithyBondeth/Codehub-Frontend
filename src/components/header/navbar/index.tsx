@@ -34,11 +34,10 @@ export default function Navbar() {
     const fetchCurrentUser = useCurrentUserStore((state) => state.fetchCurrentUser)
 
     useEffect(() => {  
-       if(emailToken && !socialToken) {
+       if(emailToken) {
             fetchCurrentUser(GET_CURRENT_USER_URL, emailToken as string)
        }
-
-       if(socialToken && !emailToken) {
+       if(socialToken) {
          fetchCurrentUser(GET_CURRENT_USER_URL, socialToken as string)
        }
     }, [emailToken, fetchCurrentUser, socialToken])
@@ -47,7 +46,7 @@ export default function Navbar() {
         <nav className="shadow-lg flex justify-between items-center px-3 sticky top-0 z-10 bg-white dark:bg-dark">
             {/* Logo Section */}
             <Link to="/" className="flex items-center">
-                <img src={codeHubLogoPng} alt="Codehub" className="h-12 tablet-md:py-2"/> 
+                <img src={codeHubLogoPng} alt="Codehub" className="h-16 tablet-md:py-2"/> 
                 <p className="text-xl font-bold phone-lg:hidden">CodeHub</p>
             </Link>
             {/* Menu Link Section */}

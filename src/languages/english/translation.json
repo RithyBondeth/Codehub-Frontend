@@ -1,10 +1,10 @@
 {
     "navbar": [
-        { "id": 1, "link": "/", "label": "Home" },
-        { "id": 2, "link": "/article", "label": "Article" },
-        { "id": 3, "link": "/course", "label": "Course" },
-        { "id": 4, "link": "/work", "label": "Our Work" },
-        { "id": 5, "link": "/about", "label": "About Us" }
+        { "id": 1, "link": "/", "label": "Home", "icon": "home" },
+        { "id": 2, "link": "/article", "label": "Article", "icon": "article" },
+        { "id": 3, "link": "/course", "label": "Course", "icon": "school" },
+        { "id": 4, "link": "/work", "label": "Our Work", "icon": "business_center" },
+        { "id": 5, "link": "/about", "label": "About Us", "icon": "badge" }
     ],
     "footer": {
         "more": {
@@ -168,6 +168,7 @@
                 ],
                 "comment": {
                     "label": "Comments",
+                    "no-content": "No Comment",
                     "count": "Comments",
                     "placeholder": "Write Your Comment Here",
                     "button": "Comment"

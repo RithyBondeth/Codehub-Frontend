@@ -45,12 +45,15 @@ export default function SigninPage() {
     }
 
     useEffect(() => {
-        if(emailToken && !token) {
+        if(emailToken) {
             setIsAuth(true)
-            fetchCurrentUser(GET_CURRENT_USER_URL, emailToken)
+            fetchCurrentUser(GET_CURRENT_USER_URL, emailToken as string)
             navigate("/")
-        } else {
-            setIsAuth(false)
+        } 
+        if(token) {
+            setIsAuth(true)
+            fetchCurrentUser(GET_CURRENT_USER_URL, token as string)
+            navigate("/")
         }
     })
 

@@ -1,28 +1,66 @@
 import { useTranslation } from "react-i18next";
 import Divider from "../../../../components/utilities/styles/divider";
 import { ShareArticleItems } from "./type";
-import ArticleComment from "../../../../components/article/article-comment";
 import useDynamicTitle from "../../../../hooks/dynamic-title.hook";
 import { useEffect } from "react";
 import { useSingleArtileStore } from "../../../../stores/api/article/article.store";
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useLanguageStore } from "../../../../stores/language/language.store";
 import { dateFormatter } from "../../../../util/date-format.util";
+import TextArea from "../../../../components/utilities/forms/textarea";
+import { AnimationButton } from "../../../../components/utilities/buttons/animation";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { CommentFormFields, schemaValidation } from "./validation";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useAuthenticationStore, useSignInStore, useSocialSignInStore } from "../../../../stores/api/auth/auth.store";
+import { useCountCommentStore, useGetAllCommentStore, usePostCommentStore } from "../../../../stores/api/comment/comment.store";
+import { COUNT_COMMENTS_URL, GET_ALL_COMMENTS_URL, POST_COMMENT_URL } from "../../../../constants/api/comment.api";
+import { commentDateFormatter } from "../../../../util/commentdate-format.util";
 
 export default function ArticleDetailPage() {
     useDynamicTitle()
+
+    const naviagte = useNavigate()
     const { t } = useTranslation()
     const language = useLanguageStore((state) => state.language)
     const { data, loading, error, fetchSingleData } = useSingleArtileStore()
     const { articleId } = useParams()
     const shareArticles = t("pages.article.detail.share-article", { returnObjects: true }) as ShareArticleItems[]
 
+    const isAuth = useAuthenticationStore((state) => state.isAuth)
+    const emailToken = useSignInStore((state) => state.token)
+    const socialToken = useSocialSignInStore((state) => state.token)
+
+    //Comment Store
+    const commentLoading = usePostCommentStore((state) => state.loading)
+    //const commentError = usePostCommentStore((state) => state.error)
+    const postComment = usePostCommentStore((state) => state.postComment)
+    const comments = useGetAllCommentStore((state) => state.data)
+    const fetchComments = useGetAllCommentStore((state) => state.fetchComments)
+    const fetchCountComments = useCountCommentStore((state) => state.fetchCountComment)
+    const countComments = useCountCommentStore((state) => state.data)
+
+    const { register, handleSubmit, formState, reset } = useForm<CommentFormFields>({ resolver: zodResolver(schemaValidation) })
+    
+    const onSubmit: SubmitHandler<CommentFormFields> = async (data) => {
+        if(isAuth) {
+            postComment(POST_COMMENT_URL, (emailToken || socialToken) as string, data.comment, articleId as string)
+            reset()
+            window.location.reload()
+        } else  {
+           naviagte("/signin")
+        }
+    }
+
     useEffect(() => {
       fetchSingleData(articleId as string)
-    },[articleId, fetchSingleData])
+      fetchComments(GET_ALL_COMMENTS_URL(articleId as string))
+      fetchCountComments(COUNT_COMMENTS_URL(articleId as string))
+
+    },[articleId, fetchSingleData, fetchComments, fetchCountComments, postComment])
 
     if(loading) {
         return ( 
@@ -90,7 +128,48 @@ export default function ArticleDetailPage() {
                     </div>
                 </div>
                 {/* Comment Section */}
-                <ArticleComment/>
+                <div className="flex flex-col gap-5">
+                    {/* Header Section */} 
+                <div className="flex flex-col items-start gap-3 mt-10">
+                    <div className="w-full flex justify-between items-center">
+                        <p className="text-xl">{t("pages.article.detail.comment.label")}</p>
+                        <p>{countComments} {t("pages.article.detail.comment.count")}</p>
+                    </div>
+                        <Divider/>
+                    </div>
+                    {/* Display Comment Section */}
+                    {comments && comments.length > 0 && comments.map((comment, index) => (
+                        <div className="chat chat-start" key={index}>
+                            <div className="chat-image avatar">
+                                <div className="w-10 rounded-full">
+                                    <img alt="userprofile" src={comment.user.avatar} />
+                                </div>
+                            </div>
+                            <div className="chat-bubble text-sm dark:bg-darklight bg-gray-100 text-black">{comment.content}</div>
+                            <p className="text-[10px] text-gray-500 mt-1">{commentDateFormatter(comment.createdAt)}</p>
+                        </div>
+                    ))}
+                    {countComments === 0 && <div className="w-full flex justify-center items-center">
+                        <p>{t("pages.article.detail.comment.no-content")}</p>
+                    </div>}
+                    {/* Submit Comment Section */}
+                    <form onSubmit={handleSubmit(onSubmit)}>
+                        <div>
+                            <TextArea
+                                id="comment"
+                                placeholder={t("pages.article.detail.comment.placeholder")}
+                                className="min-w-full h-36 text-sm"
+                                {...register("comment")}
+                            />
+                            {formState.errors.comment && <div className="">
+                                <p className="text-red-500 text-xs">{formState.errors.comment.message}</p>
+                            </div>}
+                        </div>
+                        <div className="w-full flex justify-end mt-2">
+                            <AnimationButton type="submit" label={commentLoading ? "Loading..." : t("pages.article.detail.comment.button")} className="text-sm"/>
+                        </div>
+                    </form>
+                </div>
             </div>}
         </div>
     )

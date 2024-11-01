@@ -33,6 +33,7 @@ export default function PersonalCard() {
     }
 
     const currentUser = useCurrentUserStore((state) => state.data)
+    
     const { register, handleSubmit, formState, reset  } = useForm<PersonalInfoFields>({ resolver: zodResolver(personalInfoSchema) })
     const onSubmit: SubmitHandler<PersonalInfoFields> = async (data) => {
         console.log(data)

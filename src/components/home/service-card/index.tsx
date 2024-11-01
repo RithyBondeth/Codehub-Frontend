@@ -19,6 +19,7 @@ export default function ServiceCard() {
         return () => controller.abort()
    }, [fetchData])
 
+
    if(loading) {
         return (
             <ServiceSkeleton>
