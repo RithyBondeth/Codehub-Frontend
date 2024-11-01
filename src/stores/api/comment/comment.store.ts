@@ -16,7 +16,7 @@ export const usePostCommentStore = create<PostCommentState>()((set) => ({
             },{
                 headers: { Authorization: `Bearer ${token}` }
             })
-
+            console.log("Pressed Comment: ", response.data)
             set({ loading: false, data: response.data })
         } catch (error) {
             if(axios.isAxiosError(error)) {

@@ -1,6 +1,5 @@
 import { useTranslation } from "react-i18next";
 import Divider from "../../../../components/utilities/styles/divider";
-
 import useDynamicTitle from "../../../../hooks/dynamic-title.hook";
 import { useEffect } from "react";
 import { useSingleArtileStore } from "../../../../stores/api/article/article.store";
@@ -19,7 +18,6 @@ import { useAuthenticationStore, useSignInStore, useSocialSignInStore } from "..
 import { useCountCommentStore, useGetAllCommentStore, usePostCommentStore } from "../../../../stores/api/comment/comment.store";
 import { COUNT_COMMENTS_URL, GET_ALL_COMMENTS_URL, POST_COMMENT_URL } from "../../../../constants/api/comment.api";
 import { commentDateFormatter } from "../../../../util/commentdate-format.util";
-import { ShareArticleItems } from "./type";
 
 export default function ArticleDetailPage() {
     useDynamicTitle()
@@ -29,7 +27,6 @@ export default function ArticleDetailPage() {
     const language = useLanguageStore((state) => state.language)
     const { data, loading, error, fetchSingleData } = useSingleArtileStore()
     const { articleId } = useParams()
-    const shareArticles = t("pages.article.detail.share-article", { returnObjects: true }) as ShareArticleItems[]
 
     const isAuth = useAuthenticationStore((state) => state.isAuth)
     const emailToken = useSignInStore((state) => state.token)
@@ -37,7 +34,6 @@ export default function ArticleDetailPage() {
 
     //Comment Store
     const commentLoading = usePostCommentStore((state) => state.loading)
-    //const commentError = usePostCommentStore((state) => state.error)
     const postComment = usePostCommentStore((state) => state.postComment)
     const comments = useGetAllCommentStore((state) => state.data)
     const fetchComments = useGetAllCommentStore((state) => state.fetchComments)
@@ -48,9 +44,16 @@ export default function ArticleDetailPage() {
     
     const onSubmit: SubmitHandler<CommentFormFields> = async (data) => {
         if(isAuth) {
-            postComment(POST_COMMENT_URL, (emailToken || socialToken) as string, data.comment, articleId as string)
-            reset()
-            window.location.reload()
+            if(emailToken) {
+                await postComment(POST_COMMENT_URL, emailToken as string, data.comment, articleId as string)
+                reset()
+                window.location.reload()
+            }
+            if(socialToken) {
+                await postComment(POST_COMMENT_URL, socialToken as string, data.comment, articleId as string)
+                reset()
+                window.location.reload()
+            }
         } else  {
            naviagte("/signin")
         }
@@ -119,15 +122,6 @@ export default function ArticleDetailPage() {
                         td: ({ ...props }) => <td className="border-2 p-3 text-sm" {...props} />,
                     }}
                 />
-                {/* Share Article Section */}
-                <div className="w-full flex items-center justify-end gap-2 mt-10">
-                    <p className="text-sm">{t("pages.article.detail.share-article-button")}</p>
-                    <div className="flex items-center gap-2 duration-200">
-                        {shareArticles.map((item) => (
-                            <img key={item.id} src={item.icon} alt="social" className="h-7 cursor-pointer duration-200 hover:scale-110 dark:invert"/>  
-                        ))}
-                    </div>
-                </div>
                 {/* Comment Section */}
                 <div className="flex flex-col gap-5">
                 {/* Header Section */} 
