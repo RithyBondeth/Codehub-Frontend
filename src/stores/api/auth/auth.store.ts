@@ -1,8 +1,16 @@
 import { create } from "zustand";
-import { SocialSignInState, SignInState, SignUpDataType, SignUpState, ForgotPasswordState, ResetPasswordState } from "./type";
+import { SocialSignInState, SignInState, SignUpDataType, SignUpState, ForgotPasswordState, ResetPasswordState, AuthenticationState, CurrentUserState } from "./type";
 import axios from "axios";
 import { SIGNIN_URL, SIGNUP_URL } from "../../../constants/api/auth.api";
 import { persist } from "zustand/middleware";
+
+export const useAuthenticationStore = create<AuthenticationState>()(persist((set) => ({
+    isAuth: false,
+    setIsAuth: async (_isAuth: boolean) => set({ isAuth: _isAuth })
+}), {
+    name: "AuthenticationStore",
+    partialize: (state) => ({ isAuth: state.isAuth }), //Store only isAuth
+}))
 
 export const useSignUpStore = create<SignUpState>()((set) => ({
     token: null,
@@ -118,6 +126,29 @@ export const useResetPasswordStore = create<ResetPasswordState>()((set) => ({
                 set({ loading: false, error: error.message })   
             } else {
                 set({ loading: false, error: "An error occurred while restting password" })
+            }
+        }
+    }
+}))
+
+export const useCurrentUserStore = create<CurrentUserState>()((set) => ({
+    data:null,
+    loading: false,
+    error: null,
+    fetchCurrentUser: async (apiUrl: string, token: string) => {
+        set({ loading: true, error: null })
+
+        try {
+            const response = await axios.get(apiUrl, {
+                headers: { Authorization: `Bearer ${token}` }
+            })
+            
+            set({ loading: false, data: response.data })
+        } catch (error) {
+            if(axios.isAxiosError(error)) {
+                set({ loading: false, error: error.message })
+            } else {
+                set({ loading: false, error: "An error occurred while getting current user" })
             }
         }
     }

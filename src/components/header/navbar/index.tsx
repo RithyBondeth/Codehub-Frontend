@@ -8,6 +8,9 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AnimationButton } from "../../utilities/buttons/animation";
 import ProfileCard from "../profile-card";
 import ThemeSwitcher from "../theme-switcher";
+import { useAuthenticationStore, useCurrentUserStore, useSignInStore } from "../../../stores/api/auth/auth.store";
+import { useEffect } from "react";
+import { GET_CURRENT_USER_URL } from "../../../constants/api/auth.api";
 
 export default function Navbar() {
     const { language, setLanguage } = useLanguageStore()
@@ -21,13 +24,21 @@ export default function Navbar() {
 
     const location = useLocation()
     const navigate = useNavigate()
+    const isAuth = useAuthenticationStore((state) => state.isAuth)
+    
+    //Get the current user
+    const emailToken = useSignInStore((state) => state.token)
+    const currentUser = useCurrentUserStore((state) => state.data)
+    const fetchCurrentUser = useCurrentUserStore((state) => state.fetchCurrentUser)
 
-    const isAuth = false;
+    useEffect(() => {  
+        fetchCurrentUser(GET_CURRENT_USER_URL, emailToken as string)
+    }, [emailToken, fetchCurrentUser])
 
     return (
         <nav className="shadow-lg flex justify-between items-center px-3 sticky top-0 z-10 bg-white dark:bg-dark">
             {/* Logo Section */}
-            <Link to="/" replace className="flex items-center">
+            <Link to="/" className="flex items-center">
                 <img src={codeHubLogoPng} alt="Codehub" className="h-12 tablet-md:py-2"/> 
                 <p className="text-xl font-bold phone-lg:hidden">CodeHub</p>
             </Link>
@@ -48,7 +59,7 @@ export default function Navbar() {
                 {language === "kh" && 
                     <img  src={englishFlagLogo} alt="languages" className="cursor-pointer h-8 mx-5" onClick={() => changeLanguage("en")}/>}
                 {/* Auth Check Section */}
-                {isAuth ? <ProfileCard name="Bondeth" avatar="/src/assets/introduction/bondeth2.jpg"/> : <AnimationButton label={language === "en" ? "Login" : "ចុះឈ្មោះ"} className="text-xs text-nowrap" onClick={() => navigate("/signin")}/>}
+                {isAuth ? <ProfileCard name={currentUser && currentUser.username} avatar={currentUser && currentUser.avatar}/> : <AnimationButton label={language === "en" ? "Login" : "ចុះឈ្មោះ"} className="text-xs text-nowrap" onClick={() => navigate("/signin")}/>}
                 {/* Drawer Section */} 
                 <Drawer className="hidden tablet-sm:block tablet-sm:ml-3" navbarItems={navbarItems}/>
             </div>

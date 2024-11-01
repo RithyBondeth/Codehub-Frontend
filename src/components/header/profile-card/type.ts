@@ -1,4 +1,4 @@
 export type ProfileCardProps = {
-    name: string
-    avatar: string 
+    name: string | null
+    avatar: string | null
 }

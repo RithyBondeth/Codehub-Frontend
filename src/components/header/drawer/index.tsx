@@ -19,7 +19,7 @@ export default function Drawer(props: DrawerProps) {
                     {/* Sidebar content here */}
                     {props.navbarItems.map((item) => (
                         <li key={item.id}>
-                            <Link to={item.link} replace>{item.label}</Link>
+                            <Link to={item.link}>{item.label}</Link>
                         </li>
                     ))}
                     {/* Close Button */}
