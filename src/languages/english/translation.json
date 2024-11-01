@@ -162,9 +162,9 @@
                 "author": "Author",
                 "share-article-button": "Share this article",
                 "share-article": [
-                    { "id": 1, "icon": "/src/assets/socials/facebook-bw.png", "link": "" },
-                    { "id": 2, "icon": "/src/assets/socials/instagram-bw.png", "link": "" },
-                    { "id": 3, "icon": "/src/assets/socials/telegram-bw.png", "link": "" }
+                    { "id": 1, "icon": "src/assets/socials/facebook-bw.png", "link": "" },
+                    { "id": 2, "icon": "src/assets/socials/instagram-bw.png", "link": "" },
+                    { "id": 3, "icon": "src/assets/socials/telegram-bw.png", "link": "" }
                 ],
                 "comment": {
                     "label": "Comments",
@@ -186,9 +186,9 @@
                 "author": "Author",
                 "share-work-button": "Share this work",
                 "share-work": [
-                    { "id": 1, "icon": "/src/assets/socials/facebook-bw.png", "link": "" },
-                    { "id": 2, "icon": "/src/assets/socials/instagram-bw.png", "link": "" },
-                    { "id": 3, "icon": "/src/assets/socials/telegram-bw.png", "link": "" }
+                    { "id": 1, "icon": "src/assets/socials/facebook-bw.png", "link": "" },
+                    { "id": 2, "icon": "src/assets/socials/instagram-bw.png", "link": "" },
+                    { "id": 3, "icon": "src/assets/socials/telegram-bw.png", "link": "" }
                 ]
             }
         },

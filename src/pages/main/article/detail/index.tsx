@@ -49,7 +49,7 @@ export default function ArticleDetailPage() {
         if(isAuth) {
             postComment(POST_COMMENT_URL, (emailToken || socialToken) as string, data.comment, articleId as string)
             reset()
-            naviagte(`/article/${articleId}`)
+            window.location.reload()
         } else  {
            naviagte("/signin")
         }
@@ -129,7 +129,7 @@ export default function ArticleDetailPage() {
                 </div>
                 {/* Comment Section */}
                 <div className="flex flex-col gap-5">
-                    {/* Header Section */} 
+                {/* Header Section */} 
                 <div className="flex flex-col items-start gap-3 mt-10">
                     <div className="w-full flex justify-between items-center">
                         <p className="text-xl">{t("pages.article.detail.comment.label")}</p>
