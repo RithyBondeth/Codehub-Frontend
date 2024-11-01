@@ -8,7 +8,7 @@ import ContactCard from "../../../components/home/contact-card";
 import TechnologyCard from "../../../components/home/technology-card";
 import { ourTechnologyList } from "../../../constants/home/home.constant";
 import { useLocation } from "react-router-dom";
-import { useAuthenticationStore, useSocialSignInStore } from "../../../stores/api/auth/auth.store";
+import { useAuthenticationStore, useSignInStore, useSocialSignInStore } from "../../../stores/api/auth/auth.store";
 
 export default function HomePage() {
     useDynamicTitle()
@@ -24,16 +24,18 @@ export default function HomePage() {
     const { setIsAuth } = useAuthenticationStore()
     const socialToken = useSocialSignInStore((state) => state.token)
     const setSocialToken = useSocialSignInStore((state) => state.setToken)
+    const emailToken = useSignInStore((state) => state.token)
 
     useEffect(() => {
         const queryParams = new URLSearchParams(location.search)
         const token = queryParams.get("token")
         setSocialToken(token as string)
-        
-        if(socialToken) {
+
+        if(socialToken && !emailToken) {
             setIsAuth(true)
+        } else {
+            setIsAuth(false)
         }
-        
     })
 
     return (

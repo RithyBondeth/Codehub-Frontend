@@ -13,7 +13,7 @@ import { SigninFormFields, validationSchema } from "./validation"
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useAuthenticationStore, useCurrentUserStore, useSignInStore, useSocialSignInStore } from "../../../stores/api/auth/auth.store"
 import { useLanguageStore } from "../../../stores/language/language.store"
-import { FACEBOOK_SIGNIN_URL, GET_CURRENT_USER_URL, GITHUB_SIGNIN_URL } from "../../../constants/api/auth.api"
+import { FACEBOOK_SIGNIN_URL, GET_CURRENT_USER_URL, GITHUB_SIGNIN_URL, GOOGLR_SIGNIN_URL } from "../../../constants/api/auth.api"
 
 export default function SigninPage() {
     useDynamicTitle()
@@ -33,7 +33,7 @@ export default function SigninPage() {
     const emailToken = useSignInStore((state) => state.token)
 
     //const socialToken = useSocialSignInStore((state) => state.token)
-    const { socialSignIn } = useSocialSignInStore()
+    const { token, socialSignIn } = useSocialSignInStore()
     const setIsAuth = useAuthenticationStore((state) => state.setIsAuth)
     const { fetchCurrentUser } = useCurrentUserStore()
 
@@ -45,7 +45,7 @@ export default function SigninPage() {
     }
 
     useEffect(() => {
-        if(emailToken) {
+        if(emailToken && !token) {
             setIsAuth(true)
             fetchCurrentUser(GET_CURRENT_USER_URL, emailToken)
             navigate("/")
@@ -116,7 +116,7 @@ export default function SigninPage() {
                         <AnimationButton type="submit" label={t("auth.signin.signin-button")} className="text-xs"/>
                         <p className="text-xs mb-5 mt-6">{t("auth.signin.continue-with")}</p>
                         <div className="flex justify-center items-center gap-3 [&>img]:cursor-pointer [&>img]:size-8 [&>img]:rounded-full">
-                            <img src={GoogleLogo} alt="google icon" onClick={() => socialSignIn('http://localhost:3000/api/auth/google/login')}/>
+                            <img src={GoogleLogo} alt="google icon" onClick={() => socialSignIn(GOOGLR_SIGNIN_URL)}/>
                             <img src={FacebookLogo} alt="facbook icon" onClick={() => socialSignIn(FACEBOOK_SIGNIN_URL)}/>
                             <img src={GithubLogo} alt="github icon" onClick={() => socialSignIn(GITHUB_SIGNIN_URL)}/>
                         </div>
