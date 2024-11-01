@@ -1,1 +1,1 @@
-export const FOUNDER_IMAGE_URL = "https://codehub-backend-hb3t.onrender.com/uploads/founder/founde.jpg"
+export const FOUNDER_IMAGE_URL = "https://codehub-backend-hb3t.onrender.com/uploads/founder/founder.jpg"
