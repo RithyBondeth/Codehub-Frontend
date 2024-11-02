@@ -8,14 +8,55 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { ContactFormFields, validationSchema } from "./validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import TextArea from "../../utilities/forms/textarea";
+import { usePostMessageStore } from "../../../stores/api/message/message.store";
+import { useAuthenticationStore, useSignInStore, useSocialSignInStore } from "../../../stores/api/auth/auth.store";
+import { POST_MESSAGE_URL } from "../../../constants/api/message.api";
+import { useLanguageStore } from "../../../stores/language/language.store";
+import { toast } from "react-toastify";
+import { useThemeStore } from "../../../stores/theme/theme.store";
 
 export default function ContactCard() {
     const { t } = useTranslation()
+    const language = useLanguageStore((state) => state.language)
+    const theme = useThemeStore((state) => state.theme)
+
+    const { loading, postMessage } = usePostMessageStore()
+    const emailToken = useSignInStore((state) => state.token)
+    const socialToken = useSocialSignInStore((state) => state.token)
+    const isAuth = useAuthenticationStore((state) => state.isAuth)
+
     const { register, handleSubmit, formState, reset } = useForm<ContactFormFields>({ resolver: zodResolver(validationSchema) })
 
-    const onSubmit: SubmitHandler<ContactFormFields> = async (data) => {
-        console.log(data)
-        reset()
+    const onSubmit: SubmitHandler<ContactFormFields> = async (data) => {    
+        if(isAuth) {
+            if(emailToken) {
+                await postMessage(POST_MESSAGE_URL, emailToken, {
+                    username: data.username,
+                    email: data.email,
+                    message: data.message,
+                })
+                toast.success(
+                    `${language === "kh" ? "សារ​របស់​អ្នក​ត្រូវ​បាន​ផ្ញើ​ដោយ​ជោគជ័យ​មក​កាន់​ពួក​យើង។" : "Your message was successfully sent to us."}`,
+                    { theme: `${theme === "dark" ? "dark" : "light"}` }
+                )
+                reset()
+            }
+            
+            if(socialToken) {
+                await postMessage(POST_MESSAGE_URL, socialToken, {
+                    username: data.username,
+                    email: data.email,
+                    message: data.message,
+                })
+                toast.success(
+                    `${language === "kh" ? "សារ​របស់​អ្នក​ត្រូវ​បាន​ផ្ញើ​ដោយ​ជោគជ័យ​មក​កាន់​ពួក​យើង។" : "Your message was successfully sent to us."}`,
+                    { theme: `${theme === "dark" ? "dark" : "light"}` }
+                )
+                reset()
+            }
+        } else {
+            toast.error(`${language === "kh" ? "អ្នកត្រូវតែចុះឈ្មោះជាមុនសិន។" : "You must log in first."}`, { theme: `${theme === "dark" ? "dark" : "light"}` })
+        }
     }
 
     return (
@@ -72,7 +113,12 @@ export default function ContactCard() {
                                 <p className="text-xs text-primary">{formState.errors.message.message}</p>
                         </div>}  
                     </div>
-                    <AnimationButton type="submit" label={t("pages.home.home-contact.contact-email.send-button")} icon="send" className="text-sm"/>
+                    <AnimationButton 
+                        type="submit" 
+                        label={loading ? `${language === "kh" ? "សូមមេត្តារង់ចាំ" : "Loading..."}` :  t("pages.home.home-contact.contact-email.send-button")}
+                        icon="send" 
+                        className="text-sm"
+                    />
                 </form>
             </div>
         </div>

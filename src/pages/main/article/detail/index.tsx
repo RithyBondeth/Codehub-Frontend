@@ -6,7 +6,7 @@ import { useSingleArtileStore } from "../../../../stores/api/article/article.sto
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useLanguageStore } from "../../../../stores/language/language.store";
 import { dateFormatter } from "../../../../util/date-format.util";
 import TextArea from "../../../../components/utilities/forms/textarea";
@@ -18,13 +18,15 @@ import { useAuthenticationStore, useSignInStore, useSocialSignInStore } from "..
 import { useCountCommentStore, useGetAllCommentStore, usePostCommentStore } from "../../../../stores/api/comment/comment.store";
 import { COUNT_COMMENTS_URL, GET_ALL_COMMENTS_URL, POST_COMMENT_URL } from "../../../../constants/api/comment.api";
 import { commentDateFormatter } from "../../../../util/commentdate-format.util";
+import { toast } from "react-toastify";
+import { useThemeStore } from "../../../../stores/theme/theme.store";
 
 export default function ArticleDetailPage() {
     useDynamicTitle()
 
-    const naviagte = useNavigate()
     const { t } = useTranslation()
     const language = useLanguageStore((state) => state.language)
+    const theme = useThemeStore((state) => state.theme)
     const { data, loading, error, fetchSingleData } = useSingleArtileStore()
     const { articleId } = useParams()
 
@@ -55,7 +57,7 @@ export default function ArticleDetailPage() {
                 window.location.reload()
             }
         } else  {
-           naviagte("/signin")
+            toast.error(`${language === "kh" ? "អ្នកត្រូវតែចុះឈ្មោះជាមុនសិន។" : "You must log in first."}`, { theme: `${theme === "dark" ? "dark" : "light"}` })
         }
     }
 
@@ -161,7 +163,11 @@ export default function ArticleDetailPage() {
                             </div>}
                         </div>
                         <div className="w-full flex justify-end mt-2">
-                            <AnimationButton type="submit" label={commentLoading ? "Loading..." : t("pages.article.detail.comment.button")} className="text-sm"/>
+                            <AnimationButton 
+                                type="submit" 
+                                label={commentLoading ? `${language === "kh" ? "សូមមេត្តារង់ចាំ" : "Loading..."}` : t("pages.article.detail.comment.button")} 
+                                className="text-sm"
+                            />
                         </div>
                     </form>
                 </div>
