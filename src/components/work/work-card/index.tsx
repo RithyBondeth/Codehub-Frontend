@@ -19,7 +19,7 @@ export default function WorkCard(props: WorkCardProps) {
                 className="w-fit flex justify-center items-center gap-1 p-2 rounded-lg text-white bg-secondary cursor-pointer border-2 border-transparent duration-300 hover:scale-105 hover:text-secondary hover:border-secondary hover:bg-white"
                 onClick={props.onClick}
             >
-                <img src="/src/assets/socials/github.webp" alt="github-icon" className="rounded-full h-6"/>
+                <img src="https://cdn.pixabay.com/photo/2022/01/30/13/33/github-6980894_960_720.png" alt="github-icon" className="rounded-full h-6"/>
                 <p className="text-xs">{t("pages.work.getcode-button")}</p>
             </div>
         </div>
