@@ -1,7 +1,7 @@
 export type SmallArticleCardProps = {
     title: string 
     description: string
-    poster: string
+    thumbnail: string
     button: {
         label: string
         onClick: () => void
