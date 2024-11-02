@@ -193,7 +193,7 @@
             }
         },
         "work": {
-            "readmore-button": "Read More",
+            "getcode-button": "Download Code",
             "detail": {
                 "date": "Publish Date",
                 "author": "Author"

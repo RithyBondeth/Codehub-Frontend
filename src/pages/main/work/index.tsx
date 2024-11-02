@@ -63,8 +63,9 @@ export default function WorkPage() {
             {data && data.map((work) => (
                 <WorkCard
                     title={language === "en" ? work.title : work.khmerTitle}
-                    description={work.description}
+                    description={language === "en" ? work.description : work.khmerDescription}
                     thumbnail={work.thumbnail}
+                    onClick={() => {}}
                 />
             ))}
             </div>

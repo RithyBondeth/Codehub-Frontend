@@ -1,12 +1,9 @@
-import { useNavigate } from "react-router-dom";
-import { AnimationButton } from "../../utilities/buttons/animation";
 import { WorkCardProps } from "./type";
 import { useLanguageStore } from "../../../stores/language/language.store";
 import Divider from "../../utilities/styles/divider";
 import { useTranslation } from "react-i18next";
 
 export default function WorkCard(props: WorkCardProps) {
-    const navigate = useNavigate()
     const { language } = useLanguageStore()
     const { t } = useTranslation()
 
@@ -18,7 +15,13 @@ export default function WorkCard(props: WorkCardProps) {
                 <p className={`text-md font-semibold ${language === "kh" && "leading-7"}`}>{props.title}</p>
                 <p className="text-xs leading-6">{props.description}</p>
             </div>
-            <AnimationButton label={t("pages.work.readmore-button")} className="text-xs w-fit" onClick={() => { navigate("/work/1") }}/>
+            <div 
+                className="w-fit flex justify-center items-center gap-1 p-2 rounded-lg text-white bg-secondary cursor-pointer border-2 border-transparent duration-300 hover:scale-105 hover:text-secondary hover:border-secondary hover:bg-white"
+                onClick={props.onClick}
+            >
+                <img src="/src/assets/socials/github.webp" alt="github-icon" className="rounded-full h-6"/>
+                <p className="text-xs">{t("pages.work.getcode-button")}</p>
+            </div>
         </div>
     )   
 }

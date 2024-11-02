@@ -3,6 +3,7 @@ export type WorkDataType = {
     title: string
     khmerTitle: string
     description: string
+    khmerDescription: string
     author: string
     thumbnail: string
     poster: string
