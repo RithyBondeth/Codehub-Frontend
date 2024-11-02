@@ -10,10 +10,10 @@ export default function ArticleSkeleton({ children } : { children: React.ReactNo
     
     useEffect(() => {
         gsap.from("#article-box", { duration: 1, x: -500, opacity: 0, ease: "power1.out"})
-        gsap.to("#article-box", { duration: 1, x: 0, opacity: 1, ease: "power1.out" })
+        gsap.to("#article-box", { duration: 1, x: 0, opacity: 1})
 
         gsap.from("#title-box", { duration: 1, y: 100, opacity: 0, ease: "power1.out"})
-        gsap.to("#title-box", { duration: 1, y: 0, opacity: 1, ease: "power1.out" })
+        gsap.to("#title-box", { duration: 1, y: 0, opacity: 1 })
     }, [])
     
     return  (

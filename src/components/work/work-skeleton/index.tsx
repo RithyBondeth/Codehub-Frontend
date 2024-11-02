@@ -10,10 +10,10 @@ export default function WorkSkeletoon({ children } : { children: React.ReactNode
     
     useEffect(() => {
         gsap.from("#work-box", { duration: 1, x: -500, opacity: 0, ease: "power1.out"})
-        gsap.to("#work-box", { duration: 1, x: 0, opacity: 1, ease: "power1.out" })
+        gsap.to("#work-box", { duration: 1, x: 0, opacity: 1 })
 
         gsap.from("#title-box", { duration: 1, y: 100, opacity: 0, ease: "power1.out"})
-        gsap.to("#title-box", { duration: 1, y: 0, opacity: 1, ease: "power1.out" })
+        gsap.to("#title-box", { duration: 1, y: 0, opacity: 1 })
     }, [])
     
     return  (

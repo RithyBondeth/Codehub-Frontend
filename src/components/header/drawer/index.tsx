@@ -1,11 +1,16 @@
 import { useNavigate } from "react-router-dom";
 import { DrawerProps } from "./type";
 import { useDrawerStore } from "../../../stores/drawer/drawer.store";
+import { useThemeStore } from "../../../stores/theme/theme.store";
+import { useLanguageStore } from "../../../stores/language/language.store";
 
 export default function Drawer(props: DrawerProps) {
 
     const naviagte = useNavigate()
     const {isOpen, setIsOpen} = useDrawerStore()
+
+    const { theme, toggleTheme } = useThemeStore()
+    const language = useLanguageStore((state) => state.language)
     
     return (
         <div className={`drawer drawer-end ${props.className}`}>
@@ -32,6 +37,12 @@ export default function Drawer(props: DrawerProps) {
                             </div>
                         </li>
                     ))}
+                    <li>
+                        <div className="flex items-center gap-2" onClick={toggleTheme}>
+                            <p className="material-symbols-outlined">{theme === "light" ? "dark_mode" : "light_mode"}</p>
+                            <p>{theme === "light" ? language === "kh" ? "ផ្ទៃងងឹត" : "Dark Theme" : language === "kh" ? "ផ្ទៃភ្លឺ" : "Light Theme"}</p>
+                        </div>
+                    </li>
                     {/* Close Button */}
                     <label  
                         htmlFor="my-drawer-4" aria-label="close sidebar" 
