@@ -8,9 +8,9 @@ export default function CourseCard(props: CourseCardType) {
     return (
         <div className="relative flex flex-col justify-between p-3 shadow-normal duration-300 hover:shadow-3d-primary">
             <div className="w-full">
-                <img src={props.poster} alt="course-image" className="w-full h-44 duration-300 hover:scale-105 tablet-lg:min-h-48 tablet-xl:h-32"/>
+                <img src={props.thumbnail} alt="course-image" className="w-full h-42 duration-300 hover:scale-105 tablet-lg:min-h-48 tablet-xl:h-32"/>
                 <div className="absolute top-4 right-4 p-2 rounded-lg text-xs bg-white dark:bg-dark">{t("pages.course.course-card.additional-label")}</div>
-                <div className="flex flex-col justify-start gap-1 py-3">
+                <div className="flex flex-col justify-start gap-2 py-3">
                     <p className="font-semibold">{props.title}</p>
                     <p className="text-xs leading-5">{props.description}</p>
                 </div>

@@ -69,7 +69,7 @@ export default function ArticlePage() {
                     <SmallArticleCard 
                         title={language === "kh" ? article.khmerTitle : article.title}
                         description={article.description}
-                        poster={article.thumbnail}
+                        thumbnail={article.thumbnail}
                         button={{ label: t("pages.article.readmore-button"), onClick: () => navigate(`/article/${article.id}`) }}
                     />
                ))}

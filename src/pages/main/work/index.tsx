@@ -64,7 +64,7 @@ export default function WorkPage() {
                 <WorkCard
                     title={language === "en" ? work.title : work.khmerTitle}
                     description={work.description}
-                    poster={work.poster}
+                    thumbnail={work.thumbnail}
                 />
             ))}
             </div>

@@ -5,11 +5,17 @@ import CourseCard from "../../../components/course/course-card"
 import { useLanguageStore } from "../../../stores/language/language.store"
 import { useEffect } from "react"
 import gsap from "gsap"
+import CourseSkeleton from "../../../components/course/course-skeleton"
+import { ALL_COURSE_URL } from "../../../constants/api/course.api"
+import { date } from "zod"
+import { useGetAllCourseStore } from "../../../stores/api/course/course.store"
 
 export default function CoursePage() {
     useDynamicTitle()
     const language = useLanguageStore((state) => state.language)
     const { t } = useTranslation()
+
+    const { data, loading, error, fetchAllCourse } = useGetAllCourseStore()    
 
     useEffect(() => {
         gsap.from("#course-box", { duration: 1, x: -500, opacity: 0, ease: "power1.out"})
@@ -17,8 +23,33 @@ export default function CoursePage() {
 
         gsap.from("#title-box", { duration: 1, y: 100, opacity: 0, ease: "power1.out"})
         gsap.to("#title-box", { duration: 1, y: 0, opacity: 1, ease: "power1.out" })
-    }, [])
-    
+    })
+
+    useEffect(() => {
+        fetchAllCourse(ALL_COURSE_URL)    
+    }, [fetchAllCourse])
+
+    if (loading) {
+        return (
+            <CourseSkeleton>
+                <div className="flex items-center gap-2 text-lg">
+                    <p>{language === "kh" ? "សូមមេត្តារង់ចាំ" : "Loading"}</p>
+                    <span className="loading loading-spinner loading-md"></span>
+                </div>
+            </CourseSkeleton>
+        )
+    }
+
+    if (error) {
+        return (
+            <CourseSkeleton>
+                <div className="text-center mt-10 text-lg">
+                    {language === "kh" ? "គ្មានមេរៀនដែលអាចបង្ហាញបាន" : "There are no courses to display"}
+                </div>
+            </CourseSkeleton>
+        )
+    }
+
     return (
         <div className="container my-10">
             {/* Label Section */}
@@ -31,27 +62,15 @@ export default function CoursePage() {
             </div>
             {/* Course Card Section */}
             <div id="course-box" className="grid grid-cols-3 gap-3 tablet-lg:grid-cols-2 tablet-sm:flex tablet-sm:flex-col tablet-sm:mx-2">
-                <CourseCard
-                    poster="https://miro.medium.com/v2/resize:fit:1040/0*hgtzA5jx1GpAsRZT.png"
-                    title="Fundamental of Nest.js"
-                    description="Learn how to build backend REST APIs with NestJs knowing as a powerful node.js framework. Including TypeORM, Postgres, Jwt ,Neon, etc."
-                    price="12.99$"
+            {data && date.length > 0 && data.map((course) => (
+                 <CourseCard
+                    thumbnail={course.thumbnail}
+                    title={language === "kh" ? course.khmerTitle : course.title}
+                    description={language === "kh" ? course.khmerDescription : course.description}
+                    price={course.price + "$"}
                     enrollOnClick={() => {}}
                 />
-                <CourseCard
-                    poster="https://www.webrexstudio.com/wp-content/uploads/2019/05/react-js-image.png"
-                    title="React.js Full Course 2024"
-                    description="Learn how to build Single Page Application with ReactJs. Including Component, Props, Hooks, Zustand, React Router, etc."
-                    price="9.99$"
-                    enrollOnClick={() => {}}
-               />
-                <CourseCard
-                    poster="https://habrastorage.org/webt/um/fe/t_/umfet_kngorlggfmgokzowwtsuu.png"
-                    title="Typescript Full Course 2024"
-                    description="Learn all core concept of Typescript such as Type Annotation, Interface, Classes, Generics, Enum, Type Guard, Decorator, Modules, etc."
-                    price="5.99$"
-                    enrollOnClick={() => {}}
-               />
+            ))}
             </div>
         </div>
     )

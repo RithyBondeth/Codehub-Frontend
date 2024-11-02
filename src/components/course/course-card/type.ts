@@ -1,5 +1,5 @@
 export type CourseCardType = {
-    poster: string
+    thumbnail: string
     title: string
     description: string
     price: string
