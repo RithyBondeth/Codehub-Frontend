@@ -148,6 +148,16 @@
                         "year": "June 2022 - September 2022",
                         "major": "Web Developer Intern",
                         "name": "ALLWEB IT Company Co., Ltd., Phnom Penh"
+                    },
+                    "fullstack": {
+                        "year": "June 2023 - September 2024",
+                        "major": "Full Stack Developer",
+                        "name": "Mango Byte, Phnom Penh"
+                    },
+                    "backend": {
+                        "year": "February 2025 - Present",
+                        "major": "Backend Developer",
+                        "name": "Digital Economy Business Committee (DEBC), Ministry of Economy and Finance"
                     }
                 }
             },

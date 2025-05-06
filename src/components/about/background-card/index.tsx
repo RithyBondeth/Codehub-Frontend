@@ -58,6 +58,20 @@ export default function BackgroundCard() {
                                 <p className="text-md">{t("pages.about.background.experience.intern.name")}</p>
                             </div>
                         </li>
+                        <li className="step step-error">
+                            <div className="flex flex-col items-start gap-2 [&>p]:text-start">
+                                <p className="text-lg font-medium">{t("pages.about.background.experience.fullstack.year")}</p>
+                                <p className="text-md">{t("pages.about.background.experience.fullstack.major")}</p>
+                                <p className="text-md text-start">{t("pages.about.background.experience.fullstack.name")}</p>
+                            </div>
+                        </li>
+                        <li className="step step-error">
+                            <div className="flex flex-col items-start gap-2 [&>p]:text-start">
+                                <p className="text-lg font-medium">{t("pages.about.background.experience.backend.year")}</p>
+                                <p className="text-md">{t("pages.about.background.experience.backend.major")}</p>
+                                <p className="text-md">{t("pages.about.background.experience.backend.name")}</p>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
