@@ -25,7 +25,6 @@ export default {
         "primary": "#FF5757",
         "secondary": "#3E4551",
         "dark": "#1D232A",
-        "darklight": "#A6ADBB",
       },
       boxShadow: {
         '3d-primary': '5px 5px rgba(255, 87, 87, 0.4), 10px 10px rgba(255, 87, 87, 0.3), 15px 15px rgba(255, 87, 87, 0.2), 20px 20px rgba(255, 87, 87, 0.1), 25px 25px rgba(255, 87, 87, 0.05)',
