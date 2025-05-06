@@ -78,7 +78,7 @@ export default function ContactCard() {
                 <form className="w-full flex flex-col items-end gap-5 tablet-md:w-full" onSubmit={handleSubmit(onSubmit)}>
                     <div className="w-full">
                         <InputField 
-                            preffixIcon="person" 
+                            preffixIcon="account_circle" 
                             type="text" 
                             id="username" 
                             placeholder={t("pages.home.home-contact.contact-email.username-placeholder")} 
@@ -116,7 +116,7 @@ export default function ContactCard() {
                     <AnimationButton 
                         type="submit" 
                         label={loading ? `${language === "kh" ? "សូមមេត្តារង់ចាំ" : "Loading..."}` :  t("pages.home.home-contact.contact-email.send-button")}
-                        icon="send" 
+                        icon="alternate_email" 
                         className="text-sm"
                     />
                 </form>

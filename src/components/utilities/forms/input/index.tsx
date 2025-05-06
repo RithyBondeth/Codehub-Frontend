@@ -8,7 +8,7 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>((props, 
     return (
         <div className="w-full flex items-center p-4 rounded-xl bg-gray-100 dark:bg-darklight dark:text-dark">
             {props.preffixIcon && (
-                <span className="material-symbols-outlined mr-2">{props.preffixIcon}</span>
+                <span className="material-symbols-outlined mr-2 font-light text-gray-400">{props.preffixIcon}</span>
             )}
             <input 
                 ref={ref} 

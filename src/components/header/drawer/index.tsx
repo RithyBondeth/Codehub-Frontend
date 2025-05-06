@@ -32,7 +32,7 @@ export default function Drawer(props: DrawerProps) {
                                 }}
                                 className="font-semibold flex items-center gap-2"
                             >
-                                <p className="material-symbols-outlined">{item.icon}</p>
+                                <p className="material-symbols-outlined font-light">{item.icon}</p>
                                 <p>{item.label}</p>
                             </div>
                         </li>

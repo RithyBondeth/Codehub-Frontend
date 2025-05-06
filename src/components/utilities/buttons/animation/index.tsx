@@ -72,7 +72,7 @@ export const AnimationButton = (props: AnimationButtonProps) => {
         className="absolute w-[200px] h-[150px] bg-white dark:bg-dark left-0 top-0 -z-10 pointer-events-none rounded-full"
       ></div>
       <p className={`z-10 ${props.icon && "mr-1"}`}>{props.label}</p>
-      {props.icon && <span className="material-icons material-symbols-outlined">{props.icon}</span>}
+      {props.icon && <span className="material-icons material-symbols-outlined text-[20px] font-light">{props.icon}</span>}
     </button>
   );
 };
