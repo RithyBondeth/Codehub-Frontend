@@ -1,7 +1,6 @@
 import { useEffect } from "react"
 import { useTranslation } from "react-i18next"
 import gsap from "gsap"
-import { FOUNDER_IMAGE_URL } from "../../../constants/api/about.api"
 import FounderImage from"../../../assets/founder.jpg";
 
 export default function ProfileCard() {
