@@ -17,7 +17,7 @@ import MongoDbL from "/src/assets/technologies/mongodb.png"
 export const ourSocialList = [
     { id: 1, icon: FacebookL, link: "https://www.facebook.com/profile.php?id=100094498908703" },
     { id: 2, icon: InstagramL, link: "https://www.instagram.com/rithybondeth/" },
-    { id: 3, icon: TelegramL, link: "https://telegram.me/RithyBondeth" },
+    { id: 3, icon: TelegramL, link: "https://telegram.me/hemrithybondeth" },
     { id: 4, icon: GithubL, link: "https://github.com/RithyBondeth" }
 ]
 
