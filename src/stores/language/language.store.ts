@@ -5,7 +5,7 @@ import { persist } from "zustand/middleware";
 export const useLanguageStore = create<LanguageStoreState>()(
   persist(
     (set) => ({
-      language: "kh",
+      language: "en",
       setLanguage: (lang: string) => {
         set({ language: lang });
       },
