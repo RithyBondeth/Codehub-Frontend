@@ -1,1 +1,4 @@
-export const FOUNDER_IMAGE_URL = "https://codehub-backend-hb3t.onrender.com/uploads/founder/founder.jpg"
+import { BASE_URL } from "./base.api";
+
+export const FOUNDER_IMAGE_URL =
+  `${BASE_URL}/uploads/founder/founder.jpg`;

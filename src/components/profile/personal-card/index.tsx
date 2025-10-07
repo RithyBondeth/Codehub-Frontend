@@ -10,144 +10,234 @@ import { useCurrentUserStore } from "../../../stores/api/auth/auth.store";
 import { useLanguageStore } from "../../../stores/language/language.store";
 
 export default function PersonalCard() {
-    const { t } = useTranslation()
-    const language = useLanguageStore((state) => state.language)
-    const [dateType, setDateType] = useState<"text" | "date">("text") 
-    const [isUpdated, setIsUpdated] = useState(false)
-    const profileImageRef = useRef<HTMLInputElement | null>(null)
-    const [profileImage, setProfileImage] = useState<string | null>(null)
+  const { t } = useTranslation();
+  const language = useLanguageStore((state) => state.language);
+  const [dateType, setDateType] = useState<"text" | "date">("text");
+  const [isUpdated, setIsUpdated] = useState(false);
+  const profileImageRef = useRef<HTMLInputElement | null>(null);
+  const [profileImage, setProfileImage] = useState<string | null>(null);
 
-    const handleProfileImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files?.[0]
-        if(file) {
-            const reader = new FileReader()
-            reader.onloadend = () => {
-                setProfileImage(reader.result as string)
-            }
-            reader.readAsDataURL(file)
-        }
+  const handleProfileImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setProfileImage(reader.result as string);
+      };
+      reader.readAsDataURL(file);
     }
+  };
 
-    const handleProfileImageButton = () => {
-        profileImageRef.current?.click()
-    }
+  const handleProfileImageButton = () => {
+    profileImageRef.current?.click();
+  };
 
-    const currentUser = useCurrentUserStore((state) => state.data)
-    
-    const { register, handleSubmit, formState, reset  } = useForm<PersonalInfoFields>({ resolver: zodResolver(personalInfoSchema) })
-    const onSubmit: SubmitHandler<PersonalInfoFields> = async (data) => {
-        console.log(data)
-        console.log(profileImage)
+  const currentUser = useCurrentUserStore((state) => state.data);
 
-        reset()
-    }
+  const { register, handleSubmit, formState, reset } =
+    useForm<PersonalInfoFields>({ resolver: zodResolver(personalInfoSchema) });
+  const onSubmit: SubmitHandler<PersonalInfoFields> = async (data) => {
+    console.log(data);
+    console.log(profileImage);
 
-    return (
-        <div className="w-full flex flex-col gap-5">
-            <div className="w-full flex justify-between items-center gap-3 tablet-md:flex-col tablet-md:items-start">
-                <div className="flex flex-col gap-2">
-                    <p className="text-2xl font-medium">{t("pages.profile.personal-profile.label")}</p>
-                    <p className="text-sm">{t("pages.profile.personal-profile.description")}</p>
-                </div>
-                <div className="flex items-center gap-1">
-                    {isUpdated && 
-                    <AnimationButton 
-                        label={t("pages.profile.personal-profile.buttons.cancel")} 
-                        className="text-xs" 
-                        onClick={() => {
-                            setIsUpdated(false)
-                            reset()
-                        }}
-                    />}
-                    <AnimationButton label={t("pages.profile.personal-profile.buttons.edit")} className="text-xs" onClick={() => setIsUpdated(true)}/>
-                </div>
-             </div>
-             <div className="w-full flex flex-col items-start gap-5 mt-3">
-                <div className="relative h-48 min-w-48 rounded-full overflow-hidden bg-center bg-cover bg-no-repeat bg-gray-200" style={{ backgroundImage: `url(${currentUser && currentUser.avatar})` }}>
-                    {isUpdated && <div className="absolute bottom-0 left-0 right-0 h-10 flex justify-center items-center cursor-pointer bg-black text-white" onClick={handleProfileImageButton}>
-                        <span className="material-symbols-outlined">camera_alt</span>
-                        <input type="file" ref={profileImageRef} onChange={handleProfileImageChange} className="hidden"/>
-                    </div>}
-                </div>
-                <form className="w-full" onSubmit={handleSubmit(onSubmit)}>
-                    <table className="table">
-                        <tbody>
-                        {/* Username Section */}
-                        <tr>
-                        <th>{t("pages.profile.personal-profile.forms.username.label")}</th>
-                            <td> 
-                                <div>
-                                    <InputField 
-                                        type="text" 
-                                        id="username" 
-                                        placeholder={isUpdated ? `${t("pages.profile.personal-profile.forms.username.placeholder")}` : `${currentUser && currentUser.username}`} 
-                                        disabled={!isUpdated} 
-                                        {...register("username")}
-                                    />
-                                    {isUpdated && formState.errors.username && <p className="text-xs text-red-500 mt-2">{formState.errors.username.message}</p>}
-                                </div>
-                            </td>
-                        </tr>
-                        {/* Gender and Date of Birth Section */}
-                        <tr>
-                            <th>{t("pages.profile.personal-profile.forms.gender.label")}</th>
-                            <td>
-                                <div>
-                                    <SelectField id="gender" 
-                                        disabledLabel="Gender"
-                                        className="dark:bg-darklight dark:texßt-dark"
-                                        disabled={!isUpdated}
-                                        value={currentUser && currentUser.gender}
-                                        option={[
-                                            { id: 1, value: "male", label: t("pages.profile.personal-profile.forms.gender.male") },
-                                            { id: 2, value: "female", label: t("pages.profile.personal-profile.forms.gender.female") }
-                                        ]}
-                                        {...register("gender")}
-                                    />
-                                    {isUpdated && formState.errors.gender && <p className="text-xs text-red-500 mt-2">{formState.errors.gender.message}</p>}
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>{t("pages.profile.personal-profile.forms.dob.label")}</th>
-                            <td>
-                                <div>
-                                    <InputField 
-                                        type={dateType} 
-                                        id="dob" 
-                                        onFocus={() => setDateType("date")}
-                                        disabled={!isUpdated}
-                                        className={`custom-date-input ${!isUpdated && 'opacity-50'}`}
-                                        placeholder={isUpdated ? t("pages.profile.personal-profile.forms.dob.placeholder") : `${currentUser?.dob === null ? language === "kh" ? "មិនមាន" : "None" : currentUser?.dob}`}
-                                        {...register("dob")}
-                                    />
-                                    {isUpdated && formState.errors.dob && <p className="text-xs text-red-500 mt-2">{formState.errors.dob.message}</p>}
-                                </div>
-                            </td>
-                        </tr>
-                        {/* Email Address Section */}
-                        <tr>
-                            <th>{t("pages.profile.personal-profile.forms.email.label")}</th>
-                            <td>
-                                <div>
-                                    <InputField 
-                                        type="email" 
-                                        id="email" 
-                                        placeholder={isUpdated ? `${t("pages.profile.personal-profile.forms.email.placeholder")}` : `${currentUser && currentUser.email}`} 
-                                        disabled={!isUpdated} 
-                                        {...register("email")}
-                                    />
-                                    {isUpdated && formState.errors.email && <p className="text-xs text-red-500 mt-2">{formState.errors.email.message}</p>}
-                                </div>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    {isUpdated && <div className="w-full flex justify-end">
-                        <AnimationButton type="submit" label={t("pages.profile.personal-profile.buttons.save")} className="text-xs"/>
-                    </div>}
-                </form>
-             </div>
+    reset();
+  };
+
+  return (
+    <div className="w-full flex flex-col gap-5">
+      <div className="w-full flex justify-between items-center gap-3 tablet-md:flex-col tablet-md:items-start">
+        <div className="flex flex-col gap-2">
+          <p className="text-2xl font-medium">
+            {t("pages.profile.personal-profile.label")}
+          </p>
+          <p className="text-sm">
+            {t("pages.profile.personal-profile.description")}
+          </p>
         </div>
-    )   
+        <div className="flex items-center gap-1">
+          {isUpdated && (
+            <AnimationButton
+              label={t("pages.profile.personal-profile.buttons.cancel")}
+              className="text-xs"
+              onClick={() => {
+                setIsUpdated(false);
+                reset();
+              }}
+            />
+          )}
+          <AnimationButton
+            label={t("pages.profile.personal-profile.buttons.edit")}
+            className="text-xs"
+            onClick={() => setIsUpdated(true)}
+          />
+        </div>
+      </div>
+      <div className="w-full flex flex-col items-start gap-5 mt-3">
+        <div
+          className="relative h-48 min-w-48 rounded-full overflow-hidden bg-center bg-cover bg-no-repeat bg-gray-200"
+          style={{
+            backgroundImage: `url(${currentUser && currentUser.avatar})`,
+          }}
+        >
+          {isUpdated && (
+            <div
+              className="absolute bottom-0 left-0 right-0 h-10 flex justify-center items-center cursor-pointer bg-black text-white"
+              onClick={handleProfileImageButton}
+            >
+              <span className="material-symbols-outlined">camera_alt</span>
+              <input
+                type="file"
+                ref={profileImageRef}
+                onChange={handleProfileImageChange}
+                className="hidden"
+              />
+            </div>
+          )}
+        </div>
+        <form className="w-full" onSubmit={handleSubmit(onSubmit)}>
+          <table className="table">
+            <tbody>
+              {/* Username Section */}
+              <tr>
+                <th>
+                  {t("pages.profile.personal-profile.forms.username.label")}
+                </th>
+                <td>
+                  <div>
+                    <InputField
+                      type="text"
+                      id="username"
+                      placeholder={
+                        isUpdated
+                          ? `${t(
+                              "pages.profile.personal-profile.forms.username.placeholder"
+                            )}`
+                          : `${currentUser && currentUser.username}`
+                      }
+                      disabled={!isUpdated}
+                      {...register("username")}
+                    />
+                    {isUpdated && formState.errors.username && (
+                      <p className="text-xs text-red-500 mt-2">
+                        {formState.errors.username.message}
+                      </p>
+                    )}
+                  </div>
+                </td>
+              </tr>
+              {/* Gender and Date of Birth Section */}
+              <tr>
+                <th>
+                  {t("pages.profile.personal-profile.forms.gender.label")}
+                </th>
+                <td>
+                  <div>
+                    <SelectField
+                      id="gender"
+                      disabledLabel="Gender"
+                      className="dark:bg-darklight dark:text-dark"
+                      disabled={!isUpdated}
+                      value={currentUser && currentUser.gender}
+                      option={[
+                        {
+                          id: 1,
+                          value: "male",
+                          label: t(
+                            "pages.profile.personal-profile.forms.gender.male"
+                          ),
+                        },
+                        {
+                          id: 2,
+                          value: "female",
+                          label: t(
+                            "pages.profile.personal-profile.forms.gender.female"
+                          ),
+                        },
+                      ]}
+                      {...register("gender")}
+                    />
+                    {isUpdated && formState.errors.gender && (
+                      <p className="text-xs text-red-500 mt-2">
+                        {formState.errors.gender.message}
+                      </p>
+                    )}
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <th>{t("pages.profile.personal-profile.forms.dob.label")}</th>
+                <td>
+                  <div>
+                    <InputField
+                      type={dateType}
+                      id="dob"
+                      onFocus={() => setDateType("date")}
+                      disabled={!isUpdated}
+                      className={`custom-date-input ${
+                        !isUpdated && "opacity-50"
+                      }`}
+                      placeholder={
+                        isUpdated
+                          ? t(
+                              "pages.profile.personal-profile.forms.dob.placeholder"
+                            )
+                          : `${
+                              currentUser?.dob === null
+                                ? language === "kh"
+                                  ? "មិនមាន"
+                                  : "None"
+                                : currentUser?.dob
+                            }`
+                      }
+                      {...register("dob")}
+                    />
+                    {isUpdated && formState.errors.dob && (
+                      <p className="text-xs text-red-500 mt-2">
+                        {formState.errors.dob.message}
+                      </p>
+                    )}
+                  </div>
+                </td>
+              </tr>
+              {/* Email Address Section */}
+              <tr>
+                <th>{t("pages.profile.personal-profile.forms.email.label")}</th>
+                <td>
+                  <div>
+                    <InputField
+                      type="email"
+                      id="email"
+                      placeholder={
+                        isUpdated
+                          ? `${t(
+                              "pages.profile.personal-profile.forms.email.placeholder"
+                            )}`
+                          : `${currentUser && currentUser.email}`
+                      }
+                      disabled={!isUpdated}
+                      {...register("email")}
+                    />
+                    {isUpdated && formState.errors.email && (
+                      <p className="text-xs text-red-500 mt-2">
+                        {formState.errors.email.message}
+                      </p>
+                    )}
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          {isUpdated && (
+            <div className="w-full flex justify-end">
+              <AnimationButton
+                type="submit"
+                label={t("pages.profile.personal-profile.buttons.save")}
+                className="text-xs"
+              />
+            </div>
+          )}
+        </form>
+      </div>
+    </div>
+  );
 }

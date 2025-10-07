@@ -58,7 +58,7 @@
                     { 
                         "id": 4, 
                         "icon": "/src/assets/services/training-service.png", 
-                        "label": "IT Traning Service",
+                        "label": "IT Training Service",
                         "description": "Our IT training offers hands-on courses in programming, web development, mobile app development, and more. Led by experts, we provide skills to help individuals and teams in the tech industry."
                     }
                 ]
@@ -132,7 +132,7 @@
                         "name": "Hun Sen Krong Tep Nimit Highschool, Pailin"
                     }
                 },
-                "experience-label": "My Work Experinces",
+                "experience-label": "My Work Experiences",
                 "experience": {
                     "freelance": {
                         "year": "2023 - Present",
@@ -140,7 +140,7 @@
                         "name": "Codehub"
                     },
                     "volunteer": {
-                        "year": "Febuary 2022 - May 2022",
+                        "year": "February 2022 - May 2022",
                         "major": "IDT Coding Instructor, Volunteer in IDT Encoding Program",
                         "name": "Cambodia Academy of Digital Technology, Phnom Penh"
                     },
@@ -187,7 +187,7 @@
         },
         "course": {
             "course-card": {
-                "additional-label": "Comming Soon" ,
+                "additional-label": "Coming Soon" ,
                 "enroll-button": "Enroll Now",
                 "price": "Price"
             },

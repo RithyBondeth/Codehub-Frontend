@@ -1,4 +1,4 @@
 export type TextTypeAnimationProps = {
-    text: Array<number | string | (() => void)>
-    className?: string
-}
+  text: Array<number | string | (() => void)>;
+  className?: string;
+};

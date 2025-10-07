@@ -1,5 +1,5 @@
 export type FooterMoreListItem = {
-    id: number
-    link: string
-    label: string
-}
+  id: number;
+  link: string;
+  label: string;
+};

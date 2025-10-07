@@ -1,3 +1,3 @@
 export type ThemeSwitcherProps = {
-    className?: string   
-}
+  className?: string;
+};

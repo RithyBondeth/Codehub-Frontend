@@ -1,12 +1,12 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import './languages/i18n.ts' //Initialize Language
-import { RouterProvider } from 'react-router-dom'
-import { routers } from './routers/index.tsx'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./index.css";
+import "./languages/i18n.ts";
+import { RouterProvider } from "react-router-dom";
+import { routers } from "./routers/index.tsx";
 
-createRoot(document.getElementById('root')!).render(
+createRoot(document.getElementById("root")!).render(
   <StrictMode>
-      <RouterProvider router={routers}/>
-  </StrictMode>,
-)
+    <RouterProvider router={routers} />
+  </StrictMode>
+);

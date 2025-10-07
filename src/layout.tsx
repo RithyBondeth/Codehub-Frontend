@@ -4,25 +4,25 @@ import ScrollProgress from "./components/utilities/styles/scrollprogress";
 import Footer from "./components/footer";
 import { useThemeStore } from "./stores/theme/theme.store";
 import { useEffect } from "react";
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Layout() {
-  const { theme } = useThemeStore() 
+  const { theme } = useThemeStore();
 
   useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme)
-  }, [theme])
+    document.documentElement.setAttribute("data-theme", theme);
+  }, [theme]);
 
   return (
-    <div>  
-        <ScrollProgress/>
-        <Navbar/>
-        <main>
-          <Outlet/>
-        </main>
-        <ToastContainer/>
-        <Footer/>
+    <div>
+      <ScrollProgress />
+      <Navbar />
+      <main>
+        <Outlet />
+      </main>
+      <ToastContainer />
+      <Footer />
     </div>
-  )
+  );
 }

@@ -12,8 +12,14 @@ export const AnimationButton = (props: AnimationButtonProps) => {
     // Create a GSAP context
     const ctx = gsap.context(() => {
       // Initialize the quickTo functions
-      xTo.current = gsap.quickTo(divRef.current!, "x", { duration: 0.8, ease: "power3" });
-      yTo.current = gsap.quickTo(divRef.current!, "y", { duration: 0.8, ease: "power3" });
+      xTo.current = gsap.quickTo(divRef.current!, "x", {
+        duration: 0.8,
+        ease: "power3",
+      });
+      yTo.current = gsap.quickTo(divRef.current!, "y", {
+        duration: 0.8,
+        ease: "power3",
+      });
 
       // Initial animation settings
       gsap.set(divRef.current!, {
@@ -58,7 +64,7 @@ export const AnimationButton = (props: AnimationButtonProps) => {
 
   return (
     <button
-      type={props.type || 'button'}
+      type={props.type || "button"}
       ref={buttonRef}
       className={`relative flex justify-center items-center border-2 border-solid border-primary px-4 py-2 rounded-md bg-primary text-white 
                  overflow-hidden hover:text-primary hover:border-primary duration-200 hover:scale-105 z-0 ${props.className}`}
@@ -72,7 +78,11 @@ export const AnimationButton = (props: AnimationButtonProps) => {
         className="absolute w-[200px] h-[150px] bg-white dark:bg-dark left-0 top-0 -z-10 pointer-events-none rounded-full"
       ></div>
       <p className={`z-10 ${props.icon && "mr-1"}`}>{props.label}</p>
-      {props.icon && <span className="material-icons material-symbols-outlined text-[20px] font-light">{props.icon}</span>}
+      {props.icon && (
+        <span className="material-icons material-symbols-outlined text-[20px] font-light">
+          {props.icon}
+        </span>
+      )}
     </button>
   );
 };

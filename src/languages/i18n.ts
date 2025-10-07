@@ -4,18 +4,16 @@ import enTranslation from "./english/translation.json";
 import khTranslation from "./khmer/translation.json";
 import { useLanguageStore } from "../stores/language/language.store";
 
-i18n
-.use(initReactI18next)
-.init({
-    resources: {
-        en: { translation: enTranslation },
-        kh: { translation: khTranslation }
-    },
-    fallbackLng: "kh",
-    lng: useLanguageStore.getState().language,
-    interpolation: {
-        escapeValue: false,
-    }
-})
+i18n.use(initReactI18next).init({
+  resources: {
+    en: { translation: enTranslation },
+    kh: { translation: khTranslation },
+  },
+  fallbackLng: "kh",
+  lng: useLanguageStore.getState().language,
+  interpolation: {
+    escapeValue: false,
+  },
+});
 
-export default i18n
+export default i18n;

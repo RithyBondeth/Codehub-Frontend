@@ -1,6 +1,6 @@
-import { NavbarItem } from "../navbar/type"
+import { NavbarItem } from "../navbar/type";
 
 export type DrawerProps = {
-    className: string,
-    navbarItems: NavbarItem[]
-}
+  className: string;
+  navbarItems: NavbarItem[];
+};

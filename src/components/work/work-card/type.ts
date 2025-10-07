@@ -1,6 +1,6 @@
 export type WorkCardProps = {
-    title: string
-    description: string
-    thumbnail: string
-    onClick: () => void
-}
+  title: string;
+  description: string;
+  thumbnail: string;
+  onClick: () => void;
+};
