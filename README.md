@@ -13,6 +13,24 @@
 
 </div>
 
+<!-- product-images:start -->
+
+## Product preview
+
+<p align="center">
+  <img src="docs/product-images/hero.png" alt="Code Hub — A bilingual freelance portfolio for projects, services, and articles." width="100%">
+</p>
+
+<table>
+<tr>
+  <td width="33%"><img src="docs/product-images/feature-01.png" alt="A place for the work. — Browse projects, services, and the people behind them." width="100%"></td>
+  <td width="33%"><img src="docs/product-images/feature-02.png" alt="From a project to a conversation. — Explore work and articles, then reach out through the contact page." width="100%"></td>
+  <td width="33%"><img src="docs/product-images/feature-03.png" alt="Built for more than a visit. — Accounts, comments, and profile pages support the wider website." width="100%"></td>
+</tr>
+</table>
+
+<!-- product-images:end -->
+
 ---
 
 ## Overview
@@ -32,17 +50,17 @@ Codehub Frontend is the website for Codehub, my freelance portfolio. Visitors ex
 
 ## Tech Stack
 
-| Area | Technology |
-| --- | --- |
-| UI | React 18, React Router 6 |
-| Language | TypeScript |
-| Styling | Tailwind CSS, daisyUI, styled-components |
-| State management | Zustand |
-| Data | SWR, Axios |
-| Forms | React Hook Form, Zod |
-| Animation | GSAP, Framer Motion, Swiper |
-| Content | react-markdown, remark-gfm, Chart.js |
-| Build | Vite |
+| Area             | Technology                               |
+| ---------------- | ---------------------------------------- |
+| UI               | React 18, React Router 6                 |
+| Language         | TypeScript                               |
+| Styling          | Tailwind CSS, daisyUI, styled-components |
+| State management | Zustand                                  |
+| Data             | SWR, Axios                               |
+| Forms            | React Hook Form, Zod                     |
+| Animation        | GSAP, Framer Motion, Swiper              |
+| Content          | react-markdown, remark-gfm, Chart.js     |
+| Build            | Vite                                     |
 
 ## Getting Started
 
@@ -64,12 +82,12 @@ Open [http://localhost:5173](http://localhost:5173).
 
 ### Scripts
 
-| Command | Description |
-| --- | --- |
-| `npm run dev` | Start the development server |
-| `npm run build` | Type-check and build for production |
-| `npm run lint` | Run ESLint |
-| `npm run preview` | Preview the production build |
+| Command           | Description                         |
+| ----------------- | ----------------------------------- |
+| `npm run dev`     | Start the development server        |
+| `npm run build`   | Type-check and build for production |
+| `npm run lint`    | Run ESLint                          |
+| `npm run preview` | Preview the production build        |
 
 ## Project Structure
 
